@@ -47,7 +47,7 @@ After tokenization, we removed the stop words from the text using the NLTK stop 
 
 Finally, we concatenated the results of the preprocessing steps and extracted the city location of the reviewer using the GeoPy library, which is a tool for geocoding and reverse geocoding. We also transformed the timestamp into a datetime object using the datetime module, which is a built-in Python library for working with dates and times.
 
-Overall, the text preprocessing process allowed us to clean and prepare the Meta Quest 2 VR product reviews for further analysis and visualization, and provided us with additional metadata such as the location and timestamp of the reviews.
+Overall, the text preprocessing process allowed us to clean and prepare the Meta Quest 2 VR product reviews for further analysis and visualization, and provided us with additional metadata such as the location and timestamp of the reviews. </br>
 </br>
 <b> Sentiment analysis </b> </br>
 Sentiment analysis is the process of determining the sentiment or attitude of a speaker or writer towards a particular topic or subject. It is a common task in natural language processing (NLP) and is useful for a wide range of applications, such as opinion mining, customer service, and social media analysis.
