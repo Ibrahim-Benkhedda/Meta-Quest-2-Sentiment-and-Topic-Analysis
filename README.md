@@ -10,7 +10,15 @@ In this study, we conducted sentiment analysis and topic modelling on product re
 
 For sentiment analysis, we used the NLTK vader library, which is a pre-trained model that uses a lexicon of words and emojis to identify the sentiment of a text as positive, negative, or neutral. For topic modelling, we employed keyBERT, a transformer-based model trained on a large corpus of scientific articles and capable of extracting relevant keywords and themes from the text.
 
-To visualize the results of our analysis, we created line charts, word clouds, and bar plots using various Python libraries such as Matplotlib and Wordcloud.
+Visualization is an important aspect of any data analysis study as it helps to present the results in a clear and concise manner and facilitate understanding and interpretation of the findings. In our study, we used various types of visualizations to represent the results of the sentiment analysis and topic modelling.
+
+Line charts: Line charts are a useful visualization tool for showing trends over time or for comparing multiple variables. In our study, we could use line charts to show the overall sentiment trend of the Meta Quest 2 VR reviews over time, or to compare the sentiment scores of positive, negative, and neutral reviews.
+
+Word clouds: Word clouds are a popular visualization technique that represents the frequency of words in a text dataset by displaying them in different sizes according to their importance. In our study, we could use word clouds to represent the most frequent words in the positive, negative, and neutral reviews and understand the common themes and topics mentioned by the customers.
+
+Bar plots: Bar plots are a type of chart that displays data using horizontal or vertical bars. In our study, we could use bar plots to show the distribution of sentiments among the Meta Quest 2 VR reviews, or to compare the sentiment scores of different groups of reviews based on various criteria such as product features or customer demographics.
+
+By using these visualization techniques, we can effectively communicate the results of our analysis and draw meaningful conclusions about the sentiments and themes expressed by the Meta Quest 2 VR customers.
 
 Overall, this study provides insights into the sentiments and themes expressed by the Meta Quest 2 VR customers, which can be useful for the game developers and marketers to understand the opinions and preferences of their target audience.
 
