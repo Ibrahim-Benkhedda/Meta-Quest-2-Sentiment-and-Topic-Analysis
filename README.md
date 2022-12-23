@@ -23,7 +23,8 @@ By using these visualization techniques, we can effectively communicate the resu
 Overall, this study provides insights into the sentiments and themes expressed by the Meta Quest 2 VR customers, which can be useful for the game developers and marketers to understand the opinions and preferences of their target audience.
 
 </br>
-<b> Scraping the Web for Product Reviews: A Selenium-Based Approach </b> </br>
+<b> Scraping the Web for Product Reviews: A Selenium-Based Approach </b>
+</br>
 Web scraping is the process of extracting data from websites by using automated tools or programs. It is a useful technique for collecting large amounts of data from websites, especially when the data is not readily available for download. In this study, we used Selenium, a popular web automation tool, to scrape product reviews from the Argos website.
 
 Selenium is an open-source library that allows developers to write scripts in various programming languages such as Python, Java, and C# to automate web browser interactions. It can simulate user actions such as clicking links, filling out forms, and navigating pages, and it can extract data from the web pages by using techniques such as web element selection, DOM parsing, and XPath queries.
