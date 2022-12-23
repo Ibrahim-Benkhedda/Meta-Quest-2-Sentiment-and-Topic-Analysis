@@ -4,7 +4,7 @@ This study aims to analyze the sentiment and identify the main topics discussed 
 
 </br>
 <b> Introduction </b> </br>
-Sentiment analysis and topic modelling are two important techniques in natural language processing (NLP) that have gained significant attention in recent years due to their potential applications in various fields such as marketing, customer service, and social media analysis. Sentiment analysis aims to identify the emotional state of the writer or speaker, while topic modelling is a method of uncovering the hidden structure of a large and complex text dataset by discovering the underlying topics and themes. 
+Sentiment analysis and topic modelling are two important techniques in natural language processing (NLP) that have gained significant attention in recent years due to their potential applications in various fields such as marketing, customer service, and social media analysis. Sentiment analysis aims to identify the emotional state of the writer or speaker, while topic modelling is a method of uncovering the hidden structure of a large and complex text dataset by discovering the underlying topics and themes. </br>
 
 In this study, we conducted sentiment analysis and topic modelling on product reviews of Meta Quest 2 VR, a virtual reality game for the PlayStation 4 console. The reviews were scraped from the Argos website using Selenium, a web automation tool. The data preprocessing steps included removing special characters, punctuations, and stop words, as well as tokenizing the reviews.
 
