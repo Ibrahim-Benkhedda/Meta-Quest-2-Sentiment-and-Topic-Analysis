@@ -48,3 +48,15 @@ After tokenization, we removed the stop words from the text using the NLTK stop 
 Finally, we concatenated the results of the preprocessing steps and extracted the city location of the reviewer using the GeoPy library, which is a tool for geocoding and reverse geocoding. We also transformed the timestamp into a datetime object using the datetime module, which is a built-in Python library for working with dates and times.
 
 Overall, the text preprocessing process allowed us to clean and prepare the Meta Quest 2 VR product reviews for further analysis and visualization, and provided us with additional metadata such as the location and timestamp of the reviews.
+</br>
+<b> Sentiment analysis </b> </br>
+Sentiment analysis is the process of determining the sentiment or attitude of a speaker or writer towards a particular topic or subject. It is a common task in natural language processing (NLP) and is useful for a wide range of applications, such as opinion mining, customer service, and social media analysis.
+
+One popular method for performing sentiment analysis on textual data is the SentimentIntensityAnalyzer from the nltk library. The SentimentIntensityAnalyzer is a pre-trained model that assigns a sentiment score to a given piece of text based on the presence and intensity of certain words and phrases.
+
+In this report, we present a method for using the SentimentIntensityAnalyzer to classify the sentiment of a given piece of text. The method takes a list of tokens as input and concatenates them into a single string. It then passes the string through the SentimentIntensityAnalyzer to generate a sentiment dictionary, which contains four values: 'pos', 'neg', 'neu', and 'compound'. These values represent the percentage of positive, negative, and neutral sentiment in the input text, as well as a compound score indicating the overall sentiment of the text.
+
+The method then calculates the percentage of positive, negative, and neutral sentiment in the input text using the calculate_sentiment_percent function. The calculate_sentiment_percent function takes the sentiment dictionary as input and returns the percentage of positive, negative, and neutral sentiment.
+
+Finally, the method classifies the sentiment of the input text based on the 'compound' value in the sentiment dictionary. If the 'compound' value
+
