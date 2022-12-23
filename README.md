@@ -33,3 +33,18 @@ For our study, we used Selenium to navigate to the product page of Meta Quest 2 
 
 Overall, the web scraping process using Selenium allowed us to efficiently collect a large number of product reviews for our study, which would have been difficult or impossible to obtain manually. It also provided us with additional metadata such as the location and timestamp of the reviews, which could be useful for further analysis and insights.
 
+</br>
+<b> Text Preprocessing </b> </br>
+Text preprocessing is a crucial step in natural language processing (NLP) tasks such as sentiment analysis and topic modelling, as it helps to clean and prepare the text data for further analysis. In this study, we applied various text preprocessing techniques to the Meta Quest 2 VR product reviews scraped from the Argos website using Selenium.
+
+The first step in the preprocessing process was to label the data using the Pandas library, which is a popular data manipulation and analysis tool for Python. We created a dataframe with two columns: "title" and "review", and two additional columns: "location" and "timestamp", which contained the location and timestamp of the review, respectively.
+
+Next, we used regular expressions (regex) to strip special characters and punctuations from the text. This is important because such characters and symbols can interfere with the natural language processing algorithms and affect the results. We also converted the text to lowercase to facilitate the comparison of words and avoid duplicates.
+
+Then, we tokenized the text using the NLTK library, which is a widely-used toolkit for NLP tasks. Tokenization is the process of dividing the text into smaller units called tokens, which can be words, phrases, or symbols. This is useful for the subsequent steps such as stop word removal and sentiment analysis.
+
+After tokenization, we removed the stop words from the text using the NLTK stop word list. Stop words are common words that do not convey much meaning and are often removed from the text to reduce the noise and improve the performance of the NLP algorithms.
+
+Finally, we concatenated the results of the preprocessing steps and extracted the city location of the reviewer using the GeoPy library, which is a tool for geocoding and reverse geocoding. We also transformed the timestamp into a datetime object using the datetime module, which is a built-in Python library for working with dates and times.
+
+Overall, the text preprocessing process allowed us to clean and prepare the Meta Quest 2 VR product reviews for further analysis and visualization, and provided us with additional metadata such as the location and timestamp of the reviews.
