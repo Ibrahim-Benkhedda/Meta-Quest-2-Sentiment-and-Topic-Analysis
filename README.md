@@ -22,3 +22,13 @@ By using these visualization techniques, we can effectively communicate the resu
 
 Overall, this study provides insights into the sentiments and themes expressed by the Meta Quest 2 VR customers, which can be useful for the game developers and marketers to understand the opinions and preferences of their target audience.
 
+</br>
+<b> Scraping the Web for Product Reviews: A Selenium-Based Approach </b> </br>
+Web scraping is the process of extracting data from websites by using automated tools or programs. It is a useful technique for collecting large amounts of data from websites, especially when the data is not readily available for download. In this study, we used Selenium, a popular web automation tool, to scrape product reviews from the Argos website.
+
+Selenium is an open-source library that allows developers to write scripts in various programming languages such as Python, Java, and C# to automate web browser interactions. It can simulate user actions such as clicking links, filling out forms, and navigating pages, and it can extract data from the web pages by using techniques such as web element selection, DOM parsing, and XPath queries.
+
+For our study, we used Selenium to navigate to the product page of Meta Quest 2 VR on the Argos website and retrieve the reviews, location of the reviewer, and timestamp of the review. We wrote a Python script that used the Selenium webdriver to open a web browser, navigate to the product page, and extract the data from the page elements. We also implemented error handling and retry logic to ensure that the script could handle any issues that might arise during the scraping process, such as network errors or changes in the page structure.
+
+Overall, the web scraping process using Selenium allowed us to efficiently collect a large number of product reviews for our study, which would have been difficult or impossible to obtain manually. It also provided us with additional metadata such as the location and timestamp of the reviews, which could be useful for further analysis and insights.
+
