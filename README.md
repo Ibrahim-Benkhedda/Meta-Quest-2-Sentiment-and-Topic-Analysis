@@ -58,5 +58,8 @@ In this study, we present a method for using the SentimentIntensityAnalyzer to c
 
 The method then calculates the percentage of positive, negative, and neutral sentiment in the input text using the calculate_sentiment_percent function. The calculate_sentiment_percent function takes the sentiment dictionary as input and returns the percentage of positive, negative, and neutral sentiment.
 
-Finally, the method classifies the sentiment of the input text based on the 'compound' value in the sentiment dictionary. If the 'compound' value
+Finally, the method classifies the sentiment of the input text based on the 'compound' value in the sentiment dictionary. If the 'compound' value </br>
+
+<b> Using BERT for Topic Modeling </b> </br>
+Topic modeling is a technique used to identify the main themes or topics present in a large collection of documents. It is a common task in natural language processing (NLP) and is used for a wide range of applications, such as information retrieval, text summarization, and social media analysis. In this study, we explore the use of BERT (Bidirectional Encoder Representations from Transformers) for topic modeling.
 
