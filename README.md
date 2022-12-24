@@ -60,7 +60,7 @@ The method then calculates the percentage of positive, negative, and neutral sen
 
 Finally, the method classifies the sentiment of the input text based on the 'compound' value in the sentiment dictionary. If the 'compound' value </br>
 
-<b> Using BERT for Topic Modeling </b> </br>
+<h3> Using BERT for Topic Modeling </h3>
 Topic modeling is a technique used to identify the main themes or topics present in a large collection of documents. It is a common task in natural language processing (NLP) and is used for a wide range of applications, such as information retrieval, text summarization, and social media analysis. In this study, we explore the use of BERT (Bidirectional Encoder Representations from Transformers) for topic modeling.
 
 In this study, we applied topic modeling to a collection of Meta Quest 2 VR product reviews to identify the top 10 keywords for each of 8 topics. We used a neural model, specifically the KeyBERT model, to extract keywords from the reviews and evaluated the performance of the model by calculating the frequency of each keyword and identifying the top 10 keywords with the highest frequency for each of the 8 topics.
