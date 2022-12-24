@@ -1,5 +1,5 @@
 <h1>Sentiment Analysis and Topic Modeling of Meta Quest 2 Product Reviews </h1>
-<b> Abstract: </b> </br>
+<h3> Abstract: </h3>
 This study aims to analyze the sentiment and identify the main topics discussed in Meta Quest 2 product reviews scraped from the Argos website. To achieve this goal, we first preprocessed the reviews by removing unwanted characters and applying text normalization techniques. Then, we applied sentiment analysis using a machine learning classifier to classify the reviews into positive, negative, and neutral categories. Finally, we used topic modeling to identify the main themes discussed in the reviews. The results of the sentiment analysis showed that a majority of the reviews were positive, while the topic modeling revealed that the main topics discussed included the product's features, gameplay, and overall satisfaction. We also visualized the results using word clouds and bar plots. This study provides valuable insights into the opinions and experiences of Meta Quest 2 customers and can help the manufacturer to improve the product.
 
 </br>
@@ -23,7 +23,7 @@ By using these visualization techniques, we can effectively communicate the resu
 Overall, this study provides insights into the sentiments and themes expressed by the Meta Quest 2 VR customers, which can be useful for the game developers and marketers to understand the opinions and preferences of their target audience.
 
 </br>
-<b> Scraping the Web for Product Reviews: A Selenium-Based Approach </b>
+<h3> Scraping the Web for Product Reviews: A Selenium-Based Approach </h3>
 </br>
 Web scraping is the process of extracting data from websites by using automated tools or programs. It is a useful technique for collecting large amounts of data from websites, especially when the data is not readily available for download. In this study, we used Selenium, a popular web automation tool, to scrape product reviews from the Argos website.
 
@@ -65,7 +65,7 @@ Topic modeling is a technique used to identify the main themes or topics present
 
 In this study, we applied topic modeling to a collection of Meta Quest 2 VR product reviews to identify the top 10 keywords for each of 8 topics. We used a neural model, specifically the KeyBERT model, to extract keywords from the reviews and evaluated the performance of the model by calculating the frequency of each keyword and identifying the top 10 keywords with the highest frequency for each of the 8 topics.
 
-<b> Methodology </b>
+<h4> Methodology </h4>
 To perform the topic modeling, we followed the following steps:
 <ul> 
   <li> Used the KeyBERT model to extract keywords from the preprocessed reviews. </li>
