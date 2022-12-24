@@ -34,7 +34,7 @@ For our study, we used Selenium to navigate to the product page of Meta Quest 2 
 Overall, the web scraping process using Selenium allowed us to efficiently collect a large number of product reviews for our study, which would have been difficult or impossible to obtain manually. It also provided us with additional metadata such as the location and timestamp of the reviews, which could be useful for further analysis and insights.
 
 </br>
-<b> Text Preprocessing </b> </br>
+<h3> Text Preprocessing </h3> 
 Text preprocessing is a crucial step in natural language processing (NLP) tasks such as sentiment analysis and topic modelling, as it helps to clean and prepare the text data for further analysis. In this study, we applied various text preprocessing techniques to the Meta Quest 2 VR product reviews scraped from the Argos website using Selenium.
 
 The first step in the preprocessing process was to label the data using the Pandas library, which is a popular data manipulation and analysis tool for Python. We created a dataframe with two columns: "title" and "review", and two additional columns: "location" and "timestamp", which contained the location and timestamp of the review, respectively.
@@ -49,7 +49,7 @@ Finally, we concatenated the results of the preprocessing steps and extracted th
 
 Overall, the text preprocessing process allowed us to clean and prepare the Meta Quest 2 VR product reviews for further analysis and visualization, and provided us with additional metadata such as the location and timestamp of the reviews. </br>
 </br>
-<b> Sentiment analysis </b> </br>
+<h3> Sentiment analysis </h3>
 Sentiment analysis is the process of determining the sentiment or attitude of a speaker or writer towards a particular topic or subject. It is a common task in natural language processing (NLP) and is useful for a wide range of applications, such as opinion mining, customer service, and social media analysis.
 
 One popular method for performing sentiment analysis on textual data is the SentimentIntensityAnalyzer from the nltk library. The SentimentIntensityAnalyzer is a pre-trained model that assigns a sentiment score to a given piece of text based on the presence and intensity of certain words and phrases.
