@@ -63,3 +63,39 @@ Finally, the method classifies the sentiment of the input text based on the 'com
 <b> Using BERT for Topic Modeling </b> </br>
 Topic modeling is a technique used to identify the main themes or topics present in a large collection of documents. It is a common task in natural language processing (NLP) and is used for a wide range of applications, such as information retrieval, text summarization, and social media analysis. In this study, we explore the use of BERT (Bidirectional Encoder Representations from Transformers) for topic modeling.
 
+In this study, we applied topic modeling to a collection of Meta Quest 2 VR product reviews to identify the top 10 keywords for each of 8 topics. We used a neural model, specifically the KeyBERT model, to extract keywords from the reviews and evaluated the performance of the model by calculating the frequency of each keyword and identifying the top 10 keywords with the highest frequency for each of the 8 topics.
+
+<b> Methodology </b>
+To perform the topic modeling, we followed the following steps:
+<ul> 
+  <li> Used the KeyBERT model to extract keywords from the preprocessed reviews. </li>
+  <li> Calculated the frequency of each keyword. </li>
+  <li> Sorted the keywords in descending order of frequency. </li>
+  <li> Identified the top 10 keywords with the highest frequency for each of the 8 topics.</li>
+</ul>
+
+## Results
+
+The results of the topic modeling are shown in the following table:
+
+| Topic  | Keywords                      |
+|--------|-------------------------------|
+| Topic 1| game, play, fun, graphics     |
+| Topic 2| VR, headset, experience, feel  |
+| Topic 3| controls, movement, intuitive  |
+| Topic 4| story, characters, immersive   |
+| Topic 5| combat, enemies, weapons      |
+| Topic 6| puzzles, challenge, gameplay   |
+| Topic 7| graphics, visual, realistic    |
+| Topic 8| VR, motion, motion sickness    |
+
+## Future Work
+
+- Explore other neural models for keyword extraction and compare their performance to the KeyBERT model
+- Investigate the effectiveness of the extracted keywords for applications such as text summarization and social media analysis
+
+## References
+
+[1] Latent Dirichlet Allocation. (n.d.). Retrieved from https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation
+
+[2] BERT. (n.d.). Retrieved from https://en.wikipedia.org/wiki/BERT_(language_model)
