@@ -908,7 +908,7 @@ plt.show()
 
 
     
-![png](output_36_0.png)
+![png](/output_36_0.png)
     
 
 
