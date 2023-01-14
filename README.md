@@ -1,21 +1,20 @@
-# Sentiment Analysis and Topic Modeling of Meta Quest 2 Product Reviews
+# Meta Quest 2 ProductSentiment Analysis and Topic Modeling of Reviews
 
-<h3 align="center">
-  Abstract
-</h3>
+
+## Abstract
 
 This study aims to analyze the sentiment and identify the main topics discussed in Meta Quest 2 product reviews scraped from the Argos website using Selenium. To achieve this goal, we first preprocessed the reviews by removing unwanted characters and applying text preprocessing techniques. Then, we applied sentiment analysis using a machine learning classifier to classify the reviews into positive, negative, and neutral categories. Finally, we used topic modeling to identify the main themes discussed in the reviews. The results of the sentiment analysis showed that a majority of the reviews were positive, while the topic modeling revealed that the main topics discussed included battery life, fun and overall satisfaction. the results are visualized using word cloud and line charts. The insights gained from this analysis can potentially be useful for understanding customer opinions and preferences, as well as identifying potential issues or areas for improvement in the VR headset.
 
 
 
 
-## 1.Introduction
+# 1. Introduction
 <p> Virtual reality (VR) headsets have become increasingly popular in recent years, offering a new level of immersion and interactivity for gaming, entertainment, education and even socializing. As the VR industry continues to grow, it is important for companies to understand the sentiment and concerns of their customers in order to improve the user experience and stay competitive in the market [1]. With the emergence of the metaverse, a virtual world that is accessed through the internet and where people can interact with each other and virtual objects, it is even more crucial for businesses to understand the sentiment and topics being discussed by VR headset users. </p>
 <p>
-the Meta (Oculus) Quest 2 offers a good value for its price [2] and has a large selection of available content. By analyzing the sentiment and identifying the main topics discussed in reviews of the Meta Quest 2, businesses and developers can gain insights into customer opinions and preferences, as well as identify potential areas for improvement in the product. The Meta Quest 2's wide selection of content and versatility in terms of use make it an ideal subject for such analysis.
+The Meta (Oculus) Quest 2 offers a good value for its price [2] and has a large selection of available content. By analyzing the sentiment and identifying the main topics discussed in reviews of the Meta Quest 2, businesses and developers can gain insights into customer opinions and preferences, as well as identify potential areas for improvement in the product. The Meta Quest 2's wide selection of content and versatility in terms of use make it an ideal subject for such analysis.
 </p>
 
-### 1.1.Context
+## 1.1. Context
 <p>
 Sentiment analysis (also known as opinion mining or emotion AI) is the use of natural language processing, text analysis, computational linguistics, and biometrics to systematically identify, extract, quantify, and study affective states and subjective information [3]. This allows us to understand the emotional tone and sentiment expressed in the text by classifying the text into positive or negative or neutral. which is why Sentiment analysis uses supervised machine learning approach.
 </p>
@@ -25,10 +24,10 @@ Topic modeling is an unsupervised machine learning approach for identifying and 
 
 
 
-### 1.2.Aims and objectives
+## 1.2. Aims and objectives
 The main aim of this notebook, is to analyze the sentiment of the reviews and identify the main topics discussed in Meta Quest 2 product reviews scraped from the Argos website with the help of visualizations
 
-#### 1.2.1.Methodology
+### 1.2.1. Methodology
 Here's the approach that we will be taking for our analysis described in the following steps:
 - Scrape product reviews from the Argos website.
 - Preprocess the data by cleaning and standardizing it for further analysis.
@@ -36,11 +35,10 @@ Here's the approach that we will be taking for our analysis described in the fol
 - Identify the main topics discussed in the reviews using topic modeling.
 - Analyze the reviews for each identified topic to gain insights into the specific issues or aspects that are being discussed.
 - Break down the sentiment analysis results by topic to understand how the sentiment varies across different topics.
-- Extract relevant keywords from the reviews to further understand the specific aspects or features that are being discussed.
-- Communicate the findings effectively through the use of visualization techniques such as bar charts and wordclouds.
+- Communicate the findings effectively through the use of visualization techniques such as bar charts and wordcloud.
 
 
-#### 1.2.2.Asking the Questions that will guide us through our Analysis
+### 1.2.2. Asking the Questions that will guide us through our Analysis
 Asking relevant and focused questions in the pre-analysis stage is important for guiding the direction of the analysis and ensuring that we draw meaningful conclusions, Here are some questions that will explore in our analysis:
 
 - What are some common themes that emerge across the different topics?
@@ -50,9 +48,9 @@ Asking relevant and focused questions in the pre-analysis stage is important for
 
 
 
-### 1.3.Dataset and Limitations
+## 1.3. Dataset and Limitations
 
-#### 1.3.1.Dataset:
+### 1.3.1. Dataset
 For the purpose of this project, we utilize the Selenium web scraping library to obtain a dataset of reviews for the Meta Quest 2 virtual reality headset from the Argos website, a leading retailer in the United Kingdom. The reason is, we can use the Selenium library due to its ability to handle dynamic websites (website that generates content on the fly using server-side programming languages) which will be needed for scraping the reviews.
 
 Here's an overview of our dataset:
@@ -66,19 +64,19 @@ Here's an overview of our dataset:
   - `timestamp`: Date and time of the review submission
 - Format: CSV flat file
 - Scraping:
-  - `reviews_list` and `timestamp` were first scraped from the Argos website.
-  - `reviews_list` contains the title, review, and location for each review, in that order.
+  - `user_info` and `timestamp` were first scraped from the Argos website.
+  - `user_info` contains the title, review, and location for each review, in that order.
   - `timestamp` contains the datetime of the review.
-  - Data was then stored in two lists (`reviews_list` and `timestamp`) locally using pickle.
+  - Data was then stored in two lists (`user_info` and `timestamp`) locally using pickle.
 - Preprocessing:
-  - `reviews_list` and `timestamp` were merged into a dictionary.
+  - `user_info` and `timestamp` were merged into a dictionary.
   - The dataset was labeled.
   - The labeled dataset was then stored locally as a CSV file.
   - Minor formatting issues corrected.
   - Datetime formatting was applied to the `timestamp` column.
   - Text preprocessing was performed on the `title`, `reviews`, and `location` columns.
   
-#### 1.3.2.Limitations
+### 1.3.2. Limitations
 It is important that we consider the limitations of our dataset when interpreting the results. Here are some factors that should be taken into account in our results:
 
 - We limited the data used in this study to reviews from the Argos website for a single VR headset (Meta Quest 2). This means that the results may not be representative of the broader market for VR products. We must consider this limitation when interpreting the results of the study.
@@ -89,7 +87,7 @@ It is important that we consider the limitations of our dataset when interpretin
 
 
 
-### 1.4.Ethical considerations 
+## 1.4. Ethical considerations 
 We need to be aware of the legal and ethical implications of scraping data from the Argos website and how we plan to use this data for our study, here are the Ethical considerations related to the Argos website:
 
 - According to the website terms and conditions of Argos, scraping data for non-commercial purposes is permitted. This means that individuals or organizations may use web scraping techniques to extract data from the Argos website for research or personal use, as long as the data is not being used for commercial gain. [5]
@@ -100,7 +98,7 @@ We need to be aware of the legal and ethical implications of scraping data from 
 
 
 
-### 1.5.Dependencies
+## 1.5. Dependencies
 
 The following code will create a text file called requirements.txt that lists all the dependencies needed for this notebook
 
@@ -116,14 +114,14 @@ use ` pip install -r requirements.txt ` to install all the packages and versions
 # pip install -r requirements
 ```
 
-## 2.Extracting Product Reviews from the Web with Selenium
-<p>
- Web scraping is the process of extracting data from websites by using automated tools or programs. It is a useful technique for collecting large amounts of data from websites, especially when the data is not readily available for download. In this study, we used Selenium, a popular web automation tool, to scrape product reviews from the Argos website. </p>
-<p>
-Selenium is an open-source library that allows developers to write scripts in various programming languages to automate web browser interactions. It can simulate user actions such as clicking links, filling out forms, and navigating pages, and it can extract data from the web pages by using techniques such as web element selection, DOM parsing, and XPath queries. [7] </p>
+# 2. Extracting Product Reviews from the Web with Selenium
 
-<p> For our study, we use Selenium to navigate to the product page of Meta Quest 2 VR on the Argos website and retrieve the reviews, location of the reviewer, and timestamp of the review. We write code that uses the Selenium webdriver to open a web browser, navigate to the product page, and extract the data from the page elements. We also implement error handling and retry logic to ensure that the script can handle any issues that might arise during the scraping process, such as network errors or changes in the page structure. Here's the explanation in a procedural way
-</p>    
+Web scraping is the process of extracting data from websites by using automated tools or programs. It is a useful technique for collecting large amounts of data from websites, especially when the data is not readily available for download. In this study, we used Selenium, a popular web automation tool, to scrape product reviews from the Argos website. 
+
+Selenium is an open-source library that allows developers to write scripts in various programming languages to automate web browser interactions. It can simulate user actions such as clicking links, filling out forms, and navigating pages, and it can extract data from the web pages by using techniques such as web element selection, DOM parsing, and XPath queries. [7] 
+
+For our study, we use Selenium to navigate to the product page of Meta Quest 2 VR on the Argos website and retrieve the reviews, location of the reviewer, and timestamp of the review. We write code that uses the Selenium webdriver to open a web browser, navigate to the product page, and extract the data from the page elements. We also implement error handling and retry logic to ensure that the script can handle any issues that might arise during the scraping process, such as network errors or changes in the page structure. Here's the explanation in a procedural way
+    
 <ol>
     <li>The Chrome web driver opens and navigates to the specified URL.</li>
     <li>The cookie consent prompt is clicked to accept cookies.</li>
@@ -244,7 +242,7 @@ def scrape_reviews(url, maxPages):
     return reviews_list, timestamps
 
 url = "https://www.argos.co.uk/product/9461987?clickSR=slp:term:meta%20quest%202:2:22:1"
-reviews_list, timestamps = scrape_reviews(url=url, maxPages=130)
+user_info, timestamps = scrape_reviews(url=url, maxPages=130)
 
 ```
 
@@ -259,22 +257,22 @@ import pickle
 ```python
 # Save the reviews_list and timestamps into a file
 with open('data.pkl', 'wb') as f:
-    pickle.dump((reviews_list, timestamps), f)
+    pickle.dump((user_info, timestamps), f)
 ```
 
 
 ```python
 # Load the reviews_list and timestamps from the file
 with open('data.pkl', 'rb') as f:
-    reviews_list, timestamps = pickle.load(f)
+    user_info, timestamps = pickle.load(f)
 ```
 
-## 3.Data Preprocessing
+# 3. Data Preprocessing
 <p>
-The next step is Preprocessing the data. it can help to ensure that the data is clean, consistent, and ready for analysis, and can improve the accuracy and effectiveness of the sentiment analysis and topic modeling techniques.
+The next step is preprocessing the data. it helps to ensure that the data is clean, consistent, and ready for analysis, and can improve the accuracy and effectiveness of the sentiment analysis and topic modeling techniques.
 </p>
 
-### 3.1.Labeling the data
+## 3.1. Labeling the data
 <p>
     
 The first step in preprocessing the data is to use the Pandas library to label the data. This involves assigning appropriate names to the columns of the DataFrame. We will assign the names 'Title', 'Review', 'Location', and merge the timestamp list into the dataFrame as 'timestamp' to the columns of the DataFrame. This will help to clarify the meaning and purpose of each column, and will allow us to manipulate and analyze the data using these meaningful names. 
@@ -285,12 +283,12 @@ The first step in preprocessing the data is to use the Pandas library to label t
 import pandas as pd
 import csv
 
-def label_reviews(reviews_list):
+def label_reviews(user_info):
     reviews_dict = {}
-    for i in range(0, len(reviews_list), 3):
-        title = reviews_list[i]
-        review = reviews_list[i+1]
-        location = reviews_list[i+2]
+    for i in range(0, len(user_info), 3):
+        title = user_info[i]
+        review = user_info[i+1]
+        location = user_info[i+2]
         reviews_dict[i] = {
             'title': title,
             'reviews': review,
@@ -320,7 +318,7 @@ def generate_df(reviews, timestamps):
     df.insert(loc=3, column='timestamp', value=timestamps)
     return df
 
-reviews = label_reviews(reviews_list)
+reviews = label_reviews(user_info)
 scraped_df = generate_df(reviews, timestamps)
 scraped_df.head()
 
@@ -333,6 +331,8 @@ We save our labeled scraped_df DataFrame into a csv file `data.csv` since using 
 # scraped_df.to_csv('data.csv')
 scraped_df.to_csv('new_data.csv')
 ```
+
+
 
 <code>please load the data.csv CSV File that I provided to get the same results in this study by running the cell below</code>
 
@@ -397,153 +397,78 @@ df.info()
     memory usage: 41.1+ KB
     
 
-### 3.2.Preprocessing datetime
-<p>
+## 3.2. Preprocessing datetime
+
 The next step in our data preprocessing process is to preprocess the timestamps data into a datetime object. This involves converting the timestamps from their current format, which is a string, into a datetime object, then into Year-Month-Day form so that can be easily manipulated and analyzed. 
-</p>
+
+
+
+```python
+df.timestamp
+```
+
+
+
+
+    0       2022-12-22T00:00:00.000Z
+    1       2022-12-21T00:00:00.000Z
+    2       2022-12-21T00:00:00.000Z
+    3       2022-12-14T00:00:00.000Z
+    4       2022-12-13T00:00:00.000Z
+                      ...           
+    1305    2021-09-22T00:00:00.000Z
+    1306    2021-09-22T00:00:00.000Z
+    1307    2021-09-21T00:00:00.000Z
+    1308    2021-09-21T00:00:00.000Z
+    1309    2021-09-21T00:00:00.000Z
+    Name: timestamp, Length: 1310, dtype: object
+
+
 
 
 ```python
 from datetime import datetime
-### https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior ###
-
 # convert the 'timestamp' column to datetime object
 df['timestamp'] = df['timestamp'].apply(lambda x: datetime.strptime(x, "%Y-%m-%dT%H:%M:%S.%fZ"))
 
 # Create a new column with the year, month, and day in the format "yyyy-mm-dd"
-df['date'] = df['timestamp'].apply(lambda x: x.strftime("%Y-%m-%d"))
-
-# remove the 'timestamp' column
-df = df.drop(columns=['timestamp'])
-
-# rename the 'date' column to 'timestamp'
-df = df.rename(columns={'date': 'timestamp'})
+df['timestamp'] = df['timestamp'].apply(lambda x: x.strftime("%Y-%m-%d"))
 ```
 
 
 ```python
-df
+import matplotlib.pyplot as plt
+fig = plt.figure(figsize=(10, 10))
+df.timestamp.hist(bins=30)
+plt.xticks(["2021-09-21", "2022-01-01", "2022-06-01", "2022-12-22"])
+plt.gca().invert_xaxis()
+plt.xlabel("Datetime")
+plt.ylabel("Reviews count")
 ```
 
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>title</th>
-      <th>reviews</th>
-      <th>location</th>
-      <th>timestamp</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Fast and Accurate Shopping</td>
-      <td>I was very pleased with the stock accuracy, the help of the employees and the fast shopping.</td>
-      <td>bg0139, 25 - 34, Ankara, turkey</td>
-      <td>2022-12-22</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Mr Donatas Barkus</td>
-      <td>Good staff, my family very like</td>
-      <td>Donatas, 35 - 44, London</td>
-      <td>2022-12-21</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Great product</td>
-      <td>My son enjoying it. Must have item for all age</td>
-      <td>Nilu, 35 - 44, Droitwich</td>
-      <td>2022-12-21</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Present for daughter</td>
-      <td>I bought this for a Christmas present for my daughter very happy with the delivery ewas delivered with care.</td>
-      <td>Mandy, 45 - 54, Prescot</td>
-      <td>2022-12-14</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Meta Quest 2</td>
-      <td>Excellent value for money. Happy customer would definitely recommend</td>
-      <td>Racka, 45 - 54, Teesside</td>
-      <td>2022-12-13</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1305</th>
-      <td>Fun device, Abut not for everyone!</td>
-      <td>Great fun for my son, but instantly gave my daughter and I motion sickness. It does say this in the blurb, but it affected the two of us quite badly. My son loves it though, so as long as you have plenty of space to move around I’m told it’s brilliant!</td>
-      <td>Mathcornish, 45 - 54, West Sussex</td>
-      <td>2021-09-22</td>
-    </tr>
-    <tr>
-      <th>1306</th>
-      <td>Great family fun</td>
-      <td>My 8 year old autistic son loves to play with his occulus it gives him some sensory input and gives me some piece when hes playing lol. Occulus is also a great family adventure fun game from virtual reality car racing to shooting targets and many great brain training and competitive games it's a good choice for family fun times. ;,)</td>
-      <td>Argosprobuyer, 25 - 34, Liverpool</td>
-      <td>2021-09-22</td>
-    </tr>
-    <tr>
-      <th>1307</th>
-      <td>Not bad, not bad at all</td>
-      <td>I bought this as I bought the Rift S... Turns out their last patch stopped the use of USB C adaptors... I had to buy a Quest 2. I am not disappointed. Very good non PC-VR kit. However, Oculus software is a bit rubbish.</td>
-      <td>ahyman1990, 25 - 34, Manchester</td>
-      <td>2021-09-21</td>
-    </tr>
-    <tr>
-      <th>1308</th>
-      <td>Worth it</td>
-      <td>Have been waiting to get an Xbox series X. But after it’s taken so long I decided to try the world or VR without a Pc. Great for those into gaming and those who aren’t. My other half uses it for escape rooms. Downside is that streaming drops out often abs you can only export videos via Facebook which isn’t useful.</td>
-      <td>Rob, 25 - 34, Chelmsford</td>
-      <td>2021-09-21</td>
-    </tr>
-    <tr>
-      <th>1309</th>
-      <td>Great feature</td>
-      <td>Is very nice game to play m very happy thank to argos</td>
-      <td>Nauman, 25 - 34, London Walthamstow</td>
-      <td>2021-09-21</td>
-    </tr>
-  </tbody>
-</table>
-<p>1310 rows × 4 columns</p>
-</div>
+    Text(0, 0.5, 'Reviews count')
 
 
 
-### 3.4.Text preprocessing
-the next step of our process is to clean and filter the noise from the text by using regular expressions and natural language processing tools (NLTK) to get accurate results in our analysis. 
+
+    
+![png](output_22_1.png)
+    
+
+
+Here we can see the number of reviews for different time periods. We can see a strong peak in reviews around the new year and christmas period most likely due to more sales during this period.
+
+## 3.3. Text Preprocessing
+The next step of our process is to clean and filter the noise from the text by using regular expressions and natural language processing tools (NLTK) to get accurate results in our analysis. 
 
 
 ```python
 import re
 import nltk
+import numpy as np
 
 # Download the stopwords dataset from NLTK
 nltk.download('stopwords')
@@ -553,6 +478,12 @@ nltk.download('wordnet')
 
 # downloads the the Open Multilingual WordNet "omw" dataset from NLTK
 nltk.download('omw-1.4')
+
+# download the vader, pre-trained model for sentence segmentation from NLTK for later use.
+nltk.download('vader_lexicon')
+
+# download punkt, pre-trained lexicon for Sentiment Analysis from NLTK for latere use
+nltk.download('punkt')
 
 # import stop words from NLTK
 from nltk.corpus import stopwords
@@ -576,42 +507,164 @@ stop_words = nltk.corpus.stopwords.words('english')
     [nltk_data] Downloading package omw-1.4 to
     [nltk_data]     C:\Users\SHiFT\AppData\Roaming\nltk_data...
     [nltk_data]   Package omw-1.4 is already up-to-date!
+    [nltk_data] Downloading package vader_lexicon to
+    [nltk_data]     C:\Users\SHiFT\AppData\Roaming\nltk_data...
+    [nltk_data]   Package vader_lexicon is already up-to-date!
+    [nltk_data] Downloading package punkt to
+    [nltk_data]     C:\Users\SHiFT\AppData\Roaming\nltk_data...
+    [nltk_data]   Package punkt is already up-to-date!
     
 
-### 3.4.1.Preprocessing location
-The next step in our data preprocessing process is to preprocess the location data in order to extract the city of each review. We can do this by using regular expressions (regex).
+### 3.3.1. Preprocessing User Info
+We preprocess the user info data in order to extract the city, age group as well as the country for each user. We also look at the missing data and handle it accordingly. First we can visualise some examples:
 
 
 ```python
-def get_city_location(row):
-    # access value of the row in location column and stores it in value variable
-    value = row['location']
-    complete_location = re.split(r",", value)
-    try:
-        #third element gives us the name of the city of the customer
-        city_location = complete_location[2]
-    except:
-        # sets it to N/A 
-        city_location = "N/A"
-    
-    return city_location
-
-# apply the extract_city_location() function to each row of the dataframe in the location column
-df['location'] = df.apply(get_city_location, axis=1)
+df.location.iloc[:10]
 ```
 
-### 3.4.1.1.Visaulize reviews count by city
+
+
+
+    0    bg0139, 25 - 34, Ankara, turkey
+    1           Donatas, 35 - 44, London
+    2           Nilu, 35 - 44, Droitwich
+    3            Mandy, 45 - 54, Prescot
+    4           Racka, 45 - 54, Teesside
+    5           Mick, 35 - 44, Mansfield
+    6           Denisa, 25 - 34, Bristol
+    7       Suesmillai, 45 - 54, Bookham
+    8      SmileyKaz, 45 - 54, Edinburgh
+    9     Sandra, 55 - 64, Carrickfergus
+    Name: location, dtype: object
+
+
+
+We can see that here we have the username, age range, city and country such as turkey or county. We can expand this information into separate columns for further analysis:
 
 
 ```python
-import matplotlib.pyplot as plt
-#create a new df that contains all the cities that isnt N\A
-filtered_df = df.loc[df['location'] != 'N/A']
+df[["age", "city", "country"]] = df.location.str.split(',', expand=True).iloc[:, [1, 2, 3]]
+df = df.drop("location", axis=1)
+```
 
+Lets look in more detail at each variable starting with age:
+
+#### 3.3.1.1. Analyse reviews count by age
+
+
+```python
+# Percentage of missing values
+df.age.isna().mean() * 100
+```
+
+
+
+
+    0.0
+
+
+
+We can see that there is no missing values for age. 
+
+
+```python
+df.age.value_counts().sort_index().plot()
+```
+
+
+
+
+    <AxesSubplot:>
+
+
+
+
+    
+![png](output_34_1.png)
+    
+
+
+We can see most the users are in the range 35-44 with a distribution resembling a gaussian around this value.
+
+#### 3.3.1.2. Analyse reviews count by city
+
+
+```python
+# Percentage of missing values
+df.city.isna().mean() * 100
+```
+
+
+
+
+    6.412213740458015
+
+
+
+We can see we have more missing values for city than for age. We set values to lower case and strip additional white space.
+
+
+```python
+df["city"] = df["city"].str.lower().str.strip()
+```
+
+
+```python
+df.city.value_counts()[-20:]
+```
+
+
+
+
+    balloch loch lomond    1
+    grantham               1
+    swiss cottage          1
+    teddington             1
+    bognor                 1
+    n.e lincs              1
+    newbury                1
+    eastleigh              1
+    bham                   1
+    heywood                1
+    rochdale               1
+    redruth                1
+    hampshire u.k.         1
+    anglesey               1
+    br5 2bl                1
+    up north               1
+    holt norfolk           1
+    formby                 1
+    bangor                 1
+    london walthamstow     1
+    Name: city, dtype: int64
+
+
+
+We can see some strange and likely wrong values such as "up north", "Swiss Cottage" and "n.e lincs". It seems likely these are due to the values being open text for the users to enter rather than pre-defined categorical values.
+
+One way to filter out noise in this variable could be to consider values that have more than one entry. Ofcourse we would also be ignoring smaller cities that have a single entry yet it would remove alot of noise in the data.
+
+
+
+```python
+vc = df.city.value_counts()
+# we can extract cities with one value count
+cities_one_count = vc[vc == 1].index.to_list()
+print(f"Number of cities with an entry count of 1: {len(cities_one_count)}")
+df.city[df.city.isin(cities_one_count)] = np.nan
+```
+
+    Number of cities with an entry count of 1: 312
+    
+
+
+```python
 # get the top cities by using counter then sorting the values and finally get only the first 5
-top_cities = filtered_df['location'].value_counts().sort_values(ascending=False).head(5)
+top_cities = df['city'].value_counts().sort_values(ascending=False).head(10)
 
-# Plot a bar chart of review counts by city
+fig = plt.figure(figsize = (12.8, 5))
+# plot a bar chart of review counts by city
 plt.bar(top_cities.index, top_cities)
 plt.xlabel('City')
 plt.ylabel('Number of Reviews')
@@ -621,13 +674,82 @@ plt.show()
 
 
     
-![png](output_27_0.png)
+![png](output_43_0.png)
     
 
 
-London may have more robust infrastructure or support for VR technology, which could make it easier for consumers in these areas to use and review VR headset products
+We can see the main cities with reviews, which correspond to the largest cities in the UK such as London and Manchester. They may have more robust infrastructure or support for VR technology, which could make it easier for consumers in these areas to use and review VR headset products. 
 
-### 3.4.2.Preprocessing and cleaning text data for Sentiment Analysis and Topic Modelling
+#### 3.3.1.3. Analyse reviews count by country
+
+
+```python
+# Percentage of missing values
+df.country.isna().mean() * 100
+```
+
+
+
+
+    91.29770992366413
+
+
+
+Here we can see the country is very often missing.
+
+
+```python
+# We see that there are empty spaces surrounding the text which we handle 
+df["country"] = df.country.str.lower().str.strip()
+```
+
+
+```python
+df.country.value_counts().iloc[:25]
+```
+
+
+
+
+    uk                       51
+    west midlands             4
+    scotland                  3
+    lancashire                2
+    essex                     2
+    hampshire                 2
+    london                    2
+    west yorkshire            2
+    leicestershire            2
+    england                   1
+    united kingdom            1
+    maghull                   1
+    berks                     1
+    north yorkshire           1
+    port talbot               1
+    roehampton                1
+    derby                     1
+    carmarthen                1
+    co durham                 1
+    south west                1
+    gloucester                1
+    oxfordshire               1
+    medway                    1
+    greater london            1
+    blackburn with darwen     1
+    Name: country, dtype: int64
+
+
+
+We can see that the main value used here is "uk" with 51 entries followed by "Scotland" with only 3 entries. Often a county is given such as "West Yorkshire". Also there are naming inconsistencies such as uk also being called "united kingdom".
+
+We decide to drop this variable since it is very often missing and there are inconsistent labelling between counties and country.
+
+
+```python
+df = df.drop("country", axis=1)
+```
+
+## 3.4. Preprocessing and cleaning text data for Sentiment Analysis
 In order to get accurate results from sentiment analysis and topic modeling, we develop functions that filter and pre-process text by:
 
 - Implementing regular expressions to strip special characters and punctuation marks. 
@@ -639,8 +761,6 @@ In order to get accurate results from sentiment analysis and topic modeling, we 
 
 
 ```python
-
-
 # function that removes special characters, punctuations, extra whitespace from text
 def strip_special_characters(text):    
     # compile a regular expression pattern that matches one or more spaces
@@ -658,13 +778,10 @@ def strip_special_characters(text):
     #returns the text clean from special characters, punctuations, underscore and exccess white space
     return clean_text
 
+
 # lowercase text
 def get_lowercase(text):
     return [word.lower() for word in text]
-
-# tokenize the reviews text 
-
-### lab 5 ### 
 
 
 def strip_stop_words(text):
@@ -675,21 +792,26 @@ def strip_stop_words(text):
     except:
         # return empty list
         return []
+    
+
 # Lemmatization is generally more accurate than stemming
 # If the context in which the words are used is important, lemmatization may be a better choice
 # preserve the original meaning of the words and improve the accuracy of the analysis
 
+# we use it in text preprocessing, since the wordLemmatizer shortens argos
+# word to argo, which is not accurate.
+overwrite_lemmatize_mapping = {"argo": "argos"}
 
-
-
-def lemmatize_words(text):        
+def lemmatize_words(text):
     try:
-        lemmatizer = WordNetLemmatizer()
+        lemmatizer = WordNetLemmatizer()     
         cleaned = [lemmatizer.lemmatize(word) for word in text]
+        cleaned = [overwrite_lemmatize_mapping.get(x,x) for x in cleaned]
         return cleaned
     except:
         # return empty list
         return []
+
     
 def concatenate_words(text):
     # checks if the input is a list or a string
@@ -709,6 +831,8 @@ Apply the filtering to the DataFrame reviews column
 
 
 ```python
+df['unfiltered_reviews'] = df['reviews'] # save unfiltered reviews into the dataframe
+# apply filtering
 df['reviews'] = df['reviews'].apply(strip_special_characters)
 df['reviews'] = df['reviews'].apply(word_tokenize)
 df['reviews'] = df['reviews'].apply(get_lowercase)
@@ -741,8 +865,10 @@ df
       <th></th>
       <th>title</th>
       <th>reviews</th>
-      <th>location</th>
       <th>timestamp</th>
+      <th>age</th>
+      <th>city</th>
+      <th>unfiltered_reviews</th>
     </tr>
   </thead>
   <tbody>
@@ -750,39 +876,51 @@ df
       <th>0</th>
       <td>Fast and Accurate Shopping</td>
       <td>pleased stock accuracy help employee fast shopping</td>
-      <td>Ankara</td>
       <td>2022-12-22</td>
+      <td>25 - 34</td>
+      <td>NaN</td>
+      <td>I was very pleased with the stock accuracy, the help of the employees and the fast shopping.</td>
     </tr>
     <tr>
       <th>1</th>
       <td>Mr Donatas Barkus</td>
       <td>good staff family like</td>
-      <td>London</td>
       <td>2022-12-21</td>
+      <td>35 - 44</td>
+      <td>london</td>
+      <td>Good staff, my family very like</td>
     </tr>
     <tr>
       <th>2</th>
       <td>Great product</td>
       <td>son enjoying must item age</td>
-      <td>Droitwich</td>
       <td>2022-12-21</td>
+      <td>35 - 44</td>
+      <td>NaN</td>
+      <td>My son enjoying it. Must have item for all age</td>
     </tr>
     <tr>
       <th>3</th>
       <td>Present for daughter</td>
       <td>bought christmas present daughter happy delivery ewas delivered care</td>
-      <td>Prescot</td>
       <td>2022-12-14</td>
+      <td>45 - 54</td>
+      <td>NaN</td>
+      <td>I bought this for a Christmas present for my daughter very happy with the delivery ewas delivered with care.</td>
     </tr>
     <tr>
       <th>4</th>
       <td>Meta Quest 2</td>
       <td>excellent value money happy customer would definitely recommend</td>
-      <td>Teesside</td>
       <td>2022-12-13</td>
+      <td>45 - 54</td>
+      <td>teesside</td>
+      <td>Excellent value for money. Happy customer would definitely recommend</td>
     </tr>
     <tr>
       <th>...</th>
+      <td>...</td>
+      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -792,46 +930,87 @@ df
       <th>1305</th>
       <td>Fun device, Abut not for everyone!</td>
       <td>great fun son instantly gave daughter motion sickness say blurb affected two u quite badly son love though long plenty space move around told brilliant</td>
-      <td>West Sussex</td>
       <td>2021-09-22</td>
+      <td>45 - 54</td>
+      <td>west sussex</td>
+      <td>Great fun for my son, but instantly gave my daughter and I motion sickness. It does say this in the blurb, but it affected the two of us quite badly. My son loves it though, so as long as you have plenty of space to move around I’m told it’s brilliant!</td>
     </tr>
     <tr>
       <th>1306</th>
       <td>Great family fun</td>
       <td>8 year old autistic son love play occulus give sensory input give piece he playing lol occulus also great family adventure fun game virtual reality car racing shooting target many great brain training competitive game good choice family fun time</td>
-      <td>Liverpool</td>
       <td>2021-09-22</td>
+      <td>25 - 34</td>
+      <td>liverpool</td>
+      <td>My 8 year old autistic son loves to play with his occulus it gives him some sensory input and gives me some piece when hes playing lol. Occulus is also a great family adventure fun game from virtual reality car racing to shooting targets and many great brain training and competitive games it's a good choice for family fun times. ;,)</td>
     </tr>
     <tr>
       <th>1307</th>
       <td>Not bad, not bad at all</td>
       <td>bought bought rift turn last patch stopped use usb c adaptor buy quest 2 disappointed good non pc vr kit however oculus software bit rubbish</td>
-      <td>Manchester</td>
       <td>2021-09-21</td>
+      <td>25 - 34</td>
+      <td>manchester</td>
+      <td>I bought this as I bought the Rift S... Turns out their last patch stopped the use of USB C adaptors... I had to buy a Quest 2. I am not disappointed. Very good non PC-VR kit. However, Oculus software is a bit rubbish.</td>
     </tr>
     <tr>
       <th>1308</th>
       <td>Worth it</td>
       <td>waiting get xbox series x taken long decided try world vr without pc great gaming half us escape room downside streaming drop often ab export video via facebook useful</td>
-      <td>Chelmsford</td>
       <td>2021-09-21</td>
+      <td>25 - 34</td>
+      <td>chelmsford</td>
+      <td>Have been waiting to get an Xbox series X. But after it’s taken so long I decided to try the world or VR without a Pc. Great for those into gaming and those who aren’t. My other half uses it for escape rooms. Downside is that streaming drops out often abs you can only export videos via Facebook which isn’t useful.</td>
     </tr>
     <tr>
       <th>1309</th>
       <td>Great feature</td>
-      <td>nice game play happy thank argo</td>
-      <td>London Walthamstow</td>
+      <td>nice game play happy thank argos</td>
       <td>2021-09-21</td>
+      <td>25 - 34</td>
+      <td>NaN</td>
+      <td>Is very nice game to play m very happy thank to argos</td>
     </tr>
   </tbody>
 </table>
-<p>1310 rows × 4 columns</p>
+<p>1310 rows × 6 columns</p>
 </div>
 
 
 
-## 4.Sentiment Analysis
-Sentiment analysis is the process of using computational methods to identify and classify opinions expressed in a text, with the aim of determining the writer's attitude towards a particular topic, product, or other subject. This process involves identifying and interpreting the emotions, opinions, or evaluations expressed in the text, and categorizing them as positive, negative, or neutral. [3] </br>
+## 3.5. Wordcloud Analysis
+Wordclouds are used to visualize the most common or important words in a text or set of texts. The size of the word in the wordcloud reflects its frequency in the text.
+
+
+```python
+from wordcloud import WordCloud
+from nltk.probability import FreqDist
+
+wordcloud = WordCloud(background_color='black', colormap='Blues', width=800, height=800)
+
+# Generate the wordcloud from the keywords
+words = " ".join(df.reviews.to_list())
+wordcloud.generate(words)
+
+# Display the wordcloud
+plt.figure(figsize=(10, 10))
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis("off")
+plt.show()
+```
+
+
+    
+![png](output_57_0.png)
+    
+
+
+We can see fron the Wordcloud that the Meta Quest 2 VR headset is linked with positive words such as "good", "great", "love" and "happy", this suggest that the headset is enjoyable to use and well-made. The word "family" also appears, indicating that the headset is enjoyed by multiple people in a household. The wordcloud suggests that the Meta Quest 2 VR headset is a well received and widely used product for a gift.
+
+# 4. Sentiment Analysis
+We want apply sentiment analysis to the reviews in order to extract and analyse the customer sentiment.
+
+Sentiment analysis is the process of using computational methods to identify and classify opinions expressed in a text, with the aim of determining the writer's attitude towards a particular topic, product, or other subject. This process involves identifying and interpreting the emotions, opinions, or evaluations expressed in the text, and categorizing them as positive, negative, or neutral. [3]
 Heres the following steps on how I calculated the sentiments of each review by using 'Vader' pre-trained model from NLTK and calculating the composite score:
 <ol>
   <li>The <code>classify_sentiment</code> function takes a list of tokens as input and concatenates them into a single string using the <code>concatenate_words</code> function.</li>
@@ -888,16 +1067,15 @@ def classify_sentiment(tokens):
 
 
 ```python
-pd.set_option('display.max_rows', 1000)
-
 df['sentiment'] = df.apply(lambda row: classify_sentiment(row['reviews'])['sentiment'], axis=1)
 ```
 
 
 ```python
-import matplotlib.pyplot as plt
 # calculate the proportions of reviews per sentiment (positive, negative and neutral)
-counts = df['sentiment'].value_counts().sort_values(ascending=False) / len(df)
+counts = df['sentiment'].value_counts().sort_values(ascending=False) / len(df) * 100
+print(counts)
+fig = plt.figure(figsize=(8, 8))
 
 # plot the counts as a bar plot
 counts.plot(kind='bar')
@@ -907,24 +1085,259 @@ plt.xlabel('Sentiment')
 
 # add label to the y axis
 plt.ylabel('Proportion of Reviews')
-
-# Show the plot
+# show the plot
 plt.show()
 ```
 
+    positive    91.679389
+    neutral      4.656489
+    negative     3.664122
+    Name: sentiment, dtype: float64
+    
+
 
     
-![png](output_36_0.png)
+![png](output_62_1.png)
     
 
 
 It appears that the vast majority of reviews for the Meta Quest 2 are positive. This suggests that most people who have used the product are satisfied with it and have had a positive experience. It is also worth noting that a small percentage of reviews were neutral or negative, which suggests that there may be some issues or areas for improvement with the product. To further understand the sentiment of the reviews, we will extract the themes present in these sentiment to identify any potential issues or areas for improvement of this product.
 
-## 5.Topic Modelling
+We can see the results also allign with the positive words found in the word cloud such as "great", "good", "amazing".
 
-Topic Modelling is a technique that’s capable of scanning a set of documents, detecting word and phrase patterns within them, and automatically clustering word groups and similar expressions that best characterize a set of documents [8]. In this notebook, we will be using the BERTopic algorithm for our topic modeling
 
-### 5.1.Extracting Topics using BERTopic
+```python
+pd.DataFrame(df.unfiltered_reviews[df.sentiment == "positive"].sample(5, random_state=123))
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>unfiltered_reviews</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>171</th>
+      <td>Really enjoyed the quest 2, it's fun and easy to use. I would say the only drawback is battery life but I guess it can't be helped in a self contained headset.</td>
+    </tr>
+    <tr>
+      <th>1001</th>
+      <td>I bought it few weeks ago and I am so happy.</td>
+    </tr>
+    <tr>
+      <th>1057</th>
+      <td>Best thing I have every had plus argos are all way here to help</td>
+    </tr>
+    <tr>
+      <th>972</th>
+      <td>Bought this for my son but the whole family use and have endless fun playing with it</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>This is a cool little device. I bought it since my computer isn’t fully VR ready yet so it’s perfect! I would recommend, if you’re new to VR like me, to be aware you’ll need regular breaks since you will get dizzy and motion sickness. Also, start off sitting until you have gotten used to it. Overall great device!!</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+We can see here some examples of positive reviews. Users mention being "very happy" and "really enjoyed" the device. We can see the model is able to correctly identify these reviews as having a positive sentiment.
+
+
+```python
+pd.DataFrame(df.unfiltered_reviews[df.sentiment == "neutral"].sample(10, random_state=123))
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>unfiltered_reviews</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>538</th>
+      <td>Ive seen the video clips on you tube but nothing can prepare you for what you will experiance once your in virtual reality</td>
+    </tr>
+    <tr>
+      <th>946</th>
+      <td>Strap him in a chair and watch the antics for the next hour....!!!!</td>
+    </tr>
+    <tr>
+      <th>307</th>
+      <td>Mind blowing experience</td>
+    </tr>
+    <tr>
+      <th>807</th>
+      <td>Future realistic device</td>
+    </tr>
+    <tr>
+      <th>982</th>
+      <td>I bought this 3week ago and it brill not used my Xbox</td>
+    </tr>
+    <tr>
+      <th>1165</th>
+      <td>Windows 11 as of now not compatible</td>
+    </tr>
+    <tr>
+      <th>334</th>
+      <td>Brought this as a birthday presentfor my son</td>
+    </tr>
+    <tr>
+      <th>960</th>
+      <td>My daughter is CNN made up with her new VR</td>
+    </tr>
+    <tr>
+      <th>1184</th>
+      <td>Ggghbbnnnnhhgfdtstdyd hc</td>
+    </tr>
+    <tr>
+      <th>218</th>
+      <td>Whole new world at your fingertips</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here we look at some reviews classified as neutral. We can see there are some errors in the classifications here.
+
+For example the first review should be positive yet the language used is more complex and a deeper language understanding is needed. Review 1165 or 334 is a good example of a neutral review. Some reviews are not proper language such as 1184. 
+
+
+```python
+pd.DataFrame(df.unfiltered_reviews[df.sentiment == "negative"].sample(10, random_state=123))
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>unfiltered_reviews</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>557</th>
+      <td>Bought this for my grandson’s birthday, never had so much fun in all my days, whole family can use it from 3/4 years to 100 worth every penny, must state though, some of the games can be a little pricey</td>
+    </tr>
+    <tr>
+      <th>450</th>
+      <td>Bought this a month or two ago, I’ve been on it non stop and the only thing thats negative is the battery life.</td>
+    </tr>
+    <tr>
+      <th>789</th>
+      <td>Only 4 stars as the games are still phone looking based games or very Nintendo switch looking, there's nothing that looks like COD or HALO</td>
+    </tr>
+    <tr>
+      <th>897</th>
+      <td>Bought from Argos because Currys didn't have the Oculus quest 2 even tho Currys was £55 cheaper but the service was horrendous</td>
+    </tr>
+    <tr>
+      <th>336</th>
+      <td>Never thought I would play games but this is on another level</td>
+    </tr>
+    <tr>
+      <th>1137</th>
+      <td>Bought this and its been non stop table tennis battles, fantastic So realistic and for every level too!</td>
+    </tr>
+    <tr>
+      <th>1095</th>
+      <td>Bought it for my daughter she is never of it she loves it the best thing ever she said</td>
+    </tr>
+    <tr>
+      <th>270</th>
+      <td>And it has the worst game in the world</td>
+    </tr>
+    <tr>
+      <th>401</th>
+      <td>I must say as an adult I was just as excited to get this as my 14yr old son, after two weeks I’m now bored of it. Unless you are connecting to a gaming PC the graphics and game selection is poor. Battery life is around one hour.</td>
+    </tr>
+    <tr>
+      <th>177</th>
+      <td>Bought this around a month ago, it's much superior to my now retired Rift S, no more dandling cables! Incredible exclusives such as resident evil, star wars,</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here we look at some reviews classified as having a negative sentiment. Interestingly, looking at the first review 557, it starts off my complementing the device before stating the games can be pricey so the review has mixed sentiment. Similarly the second review is also mixed sentiment.
+
+Some reviews are positive sentiment but with negative language such as "never" for review 336.
+
+There are also examples of correctly classified negative reviews such as 270 and 401.
+
+Things to improve would be to use a sentiment model that is able to understand more complex text such as a BERT style deep learning model and also to have a model that is able to classify mixed reviews.
+
+Note the results also allign with the high rating (4.8 / 5) stars for the product.
+
+# 5. Topic Modelling
+
+
+We want to use topic modelling in order to understand tethe key topics that the reviews talk about. Topic Modelling is a technique that’s capable of scanning a set of documents, detecting word and phrase patterns within them, and automatically clustering word groups and similar expressions that best characterize a set of documents [8]. In this notebook, we will be using the BERTopic algorithm for our topic modeling.
+
+<code> Note that for BERTopic, many of the preprocessing steps for the review text are not required and should not be applied as the model can tokenize stop words and handles the lemmatization in the tokenization itself. </code>
+
+
+## 5.1. Extracting Topics using BERTopic
 BERTopic leverages deep learning transformer models that are used to extract embedding represrentations from text. The embeddings are then clustered through dimensionality reduction with UMAP and HDBSCA in an unsupervised learning approach. The main advantage is leveraging the powerful transformer model architectures that are able to understand the semantic meaning from text through the self-attention mechanism. [9].
 
 
@@ -937,7 +1350,7 @@ from umap import UMAP
 
 ```python
 # stores the 'reviews' column to a list of documents
-docs = df.reviews
+docs = df.unfiltered_reviews
 
 # creates an instance of the UMAP model with specified parameters:
 #  - n_neighbors: the number of nearest neighbors used in the UMAP algorithm
@@ -957,7 +1370,8 @@ topics, probs = topic_model.fit_transform(docs)
 
 ```python
 # get_topic_info method is a member function of the BERTopic to retrieve information about the identified topics.
-topic_model.get_topic_info()
+topic_info = topic_model.get_topic_info()
+topic_info
 ```
 
 
@@ -990,74 +1404,140 @@ topic_model.get_topic_info()
     <tr>
       <th>0</th>
       <td>-1</td>
-      <td>130</td>
-      <td>-1_product_fun_great_family</td>
+      <td>389</td>
+      <td>-1_the_to_and_it</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0</td>
-      <td>389</td>
-      <td>0_vr_headset_game_oculus</td>
+      <td>228</td>
+      <td>0_my_for_loves_it</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1</td>
-      <td>358</td>
-      <td>1_son_love_bought_christmas</td>
+      <td>107</td>
+      <td>1_games_for_and_to</td>
     </tr>
     <tr>
       <th>3</th>
       <td>2</td>
-      <td>157</td>
-      <td>2_game_easy_bought_love</td>
+      <td>92</td>
+      <td>2_vr_you_to_and</td>
     </tr>
     <tr>
       <th>4</th>
       <td>3</td>
-      <td>83</td>
-      <td>3_ago_month_bought_happy</td>
+      <td>66</td>
+      <td>3_headset_vr_to_is</td>
     </tr>
     <tr>
       <th>5</th>
       <td>4</td>
-      <td>73</td>
-      <td>4_product_happy_excellent_item</td>
+      <td>61</td>
+      <td>4_playing_for_fun_this</td>
     </tr>
     <tr>
       <th>6</th>
       <td>5</td>
-      <td>25</td>
-      <td>5_family_fun_great_whole</td>
+      <td>47</td>
+      <td>5_ago_month_bought_this</td>
     </tr>
     <tr>
       <th>7</th>
       <td>6</td>
-      <td>24</td>
-      <td>6_argo_service_always_happy</td>
+      <td>41</td>
+      <td>6_quest_the_oculus_so</td>
     </tr>
     <tr>
       <th>8</th>
       <td>7</td>
-      <td>22</td>
-      <td>7_battery_life_use_thing</td>
+      <td>33</td>
+      <td>7_happy_product_very_pleased</td>
     </tr>
     <tr>
       <th>9</th>
       <td>8</td>
-      <td>21</td>
-      <td>8_world_fun_much_like</td>
+      <td>30</td>
+      <td>8_argos_service_always_thank</td>
     </tr>
     <tr>
       <th>10</th>
       <td>9</td>
-      <td>16</td>
-      <td>9_beat_saber_exercise_week</td>
+      <td>28</td>
+      <td>9_oculus_the_is_it</td>
     </tr>
     <tr>
       <th>11</th>
       <td>10</td>
+      <td>27</td>
+      <td>10_family_fun_all_of</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>11</td>
+      <td>24</td>
+      <td>11_the_quest_to_pc</td>
+    </tr>
+    <tr>
+      <th>13</th>
       <td>12</td>
-      <td>10_kit_piece_bit_amazing</td>
+      <td>19</td>
+      <td>12_strap_it_is_but</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>13</td>
+      <td>18</td>
+      <td>13_immersive_games_nintendo_or</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>14</td>
+      <td>17</td>
+      <td>14_experience_fun_brilliant_wasnt</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>15</td>
+      <td>16</td>
+      <td>15_exercise_fitness_and_for</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>16</td>
+      <td>12</td>
+      <td>16_kids_love_fun_ages</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>17</td>
+      <td>12</td>
+      <td>17_kit_piece_of_bit</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>18</td>
+      <td>11</td>
+      <td>18_good_great_easy_item</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>19</td>
+      <td>11</td>
+      <td>19_battery_product_life_family</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>20</td>
+      <td>11</td>
+      <td>20_moon_over_hes_with</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>21</td>
+      <td>10</td>
+      <td>21_the_you_to_of</td>
     </tr>
   </tbody>
 </table>
@@ -1065,7 +1545,9 @@ topic_model.get_topic_info()
 
 
 
-The results show the top 12 topics identified by the model, along with the number of times each topic appears in the collection of documents. It is worth noting that according to BERTopic documentation [9], the "-1" topic is typically a noise term that should be ignored, as it is often used to represent documents that do not fit into any of the other identified topics. The remaining topics represent the main themes or topics present in the collection of documents.
+The results show the topics identified by the model, along with the topic count as well as a description of the topic. The "-1" topic is typically a noise term that should be ignored, as it is often used to represent documents that do not fit into any of the other identified topics. The remaining topics represent the main themes or topics present in the collection of documents which we will look into.
+
+We can add the representative reviews which are 3 reviews for each topic that best represent the topic.
 
 
 ```python
@@ -1073,186 +1555,1327 @@ The results show the top 12 topics identified by the model, along with the numbe
 df["topic"] = topics
 ```
 
-### 5.2.Keyword Extraction using keyBERT
-Keywords in our context, is words that are particularly important, more frequent and relevant to the content of our reviews.
-We will use keyBERT, which is a specialized tool specifically designed for keyword extraction compared to BERTopic, which is designed mainly for Topic modelling [10]. Since we are interested in extracting relevant keywords from the reviews while, we will use the keyBERT model.
-
-
+## 5.2. Detailed Topic Insight
 
 
 ```python
-# ! pip install keybert
-from keybert import KeyBERT
-from collections import Counter
+topic_info = topic_model.get_topic_info()
+topic_info = topic_info[topic_info.Topic != -1]
+topic_info['representative_doc'] = topic_info.apply(lambda x: topic_model.representative_docs_[x["Topic"]], axis=1)
+topic_info = topic_info.explode('representative_doc')
 ```
-
-#### 5.2.1.1.Extracting top keywords per topic
 
 
 ```python
-def get_sorted_topic_keywords(topic_num):
-    # initialize KeyBERT model
-    kw_model = KeyBERT()
-    # extract the keywords from the list of reviews for specific Topic number using the KeyBERT model 
-    keywords = kw_model.extract_keywords(df[df.topic == topic_num]["reviews"].to_list())# keyphrase_ngram_range=(1))
-    
-    # sorted_keywords is a list of tuples where.
-    # each tuple consists of a keyword and its frequency.
-    # The list is sorted in descending order of frequency by applying the sorted function.
-    # display only the 10 first.
-    
-    sorted_keywords = sorted(Counter([xx[0] for x in keywords for xx in x]).items(), key=lambda x: x[1], reverse=True)[:10]
-    return sorted_keywords
-
-sorted_keywords_by_topic = {}
-
-for topic_num in range(11):
-     # extract and sort the keywords for the current topic number
-    sorted_keywords = get_sorted_topic_keywords(topic_num)
-    # store the sorted keywords to the dictionary using the topic number as the key for the dictionary
-    sorted_keywords_by_topic[topic_num] = sorted_keywords
-
-# example of sorted_keywords_by_topic format:
-# {0: [('vr', 202), ('headset', 116), ('oculus', 103), ('quest', 57), ('pc', 47)], 1:... }
-# where vr is the keyword and 202 is the frequency of the word.
+topic_info[topic_info.Topic == 0]
 ```
 
-#### 5.2.1.2.Extracting top keywords from all reviews
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>228</td>
+      <td>0_my_for_loves_it</td>
+      <td>My son loves this. Great fun</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>228</td>
+      <td>0_my_for_loves_it</td>
+      <td>Bought for my son for Christmas, highly recommend</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>228</td>
+      <td>0_my_for_loves_it</td>
+      <td>I bought this for my sons 10th birthday and he absolutely loves it!!</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here the customer talks about buying the device as a gift, mainly for christmas and for their child and how they like the device.
 
 
 ```python
-def get_all_sorted_keywords():
-    docs = df.reviews
-    kw_model = KeyBERT()
-    keywords = kw_model.extract_keywords(docs)
-    all_sorted_keywords = sorted(Counter([xx[0] for x in keywords for xx in x]).items(), key=lambda x: x[1], reverse=True)
-    return all_sorted_keywords
-all_sorted_keywords = get_all_sorted_keywords()
+topic_info[topic_info.Topic == 1]
 ```
 
-### 5.3.Keywords Frequency
-Keyword frequency refers to the number of times a keyword appears in a the reviews. This can be used as a measure of the importance or relevance of the keyword within the text. Higher keyword frequencies can indicate that a keyword is a key theme or topic in the text, while lower frequencies may indicate that it is less relavant [12].
 
-The code consists of two functions:
 
-get_keywords_frequencies: This function takes in a sorted list of tuples containing keywords and their corresponding frequencies. It returns two lists: one with the keywords and another with their frequencies.
 
-generate_barh: This function takes in three arguments: a list of keywords, a list of frequencies, and an optional matplotlib axis object (ax). It creates a bar chart using the ax object and sets the tick labels for the y-axis. It also adds labels and a title to the plot. If a topic number (topic_num) is provided, it is included in the title. If no ax object is provided, it creates a new figure and axis object.
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>107</td>
+      <td>1_games_for_and_to</td>
+      <td>This machine is great, I bought it a month ago and it has completely reinvigorated my love for gaming.</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>107</td>
+      <td>1_games_for_and_to</td>
+      <td>I bought this for my sons birthday - brilliant but of tech though the games are quite pricey - not many free things to choose from!</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>107</td>
+      <td>1_games_for_and_to</td>
+      <td>Bought for the kids but I'm using it more than them. Really interesting to see how immersive this is. Not much free content but most games aren't too expensive. Very happy with the purchase.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here, the customer talks about pleased with the purchase. However, there's a lack variety of games. in the 3rd document, it seems like customer is unhappy about the battery life of the headset which they felt it was too short.
 
 
 ```python
-def get_keywords_frequencies(sorted_keywords):
-    # gets the first element of each tuple. (frequency)
-    keywords = [keyword for keyword, frequency in sorted_keywords]
-    
-    # gets the the second element of each tuple. (keyword)
-    frequencies = [frequency for keyword, frequency in sorted_keywords]
-    return keywords, frequencies
-
-keywords, frequencies = get_keywords_frequencies(sorted_keywords)
-def generate_barh(keywords, frequencies, ax=None, topic_num=None):
-    # checks if the keywords and frequencies have the same length
-    if len(keywords) != len(frequencies):
-        return 'keywords and frequencies are not the same len'
-
-    # create a new figure and axis object if no ax object is provided
-    if ax is None:
-        fig, ax = plt.subplots()
-
-    # create the bar chart using the ax object
-    ax.barh(keywords, frequencies, color='#228b22')
-
-    # set the tick labels for the y-axis
-    ax.set_yticks(keywords, fontsize = 12)
-    ax.set_yticklabels(keywords, fontsize = 12)
-
-    # add labels and the title
-    ax.set_ylabel('Keywords', fontsize=14)
-    ax.set_xlabel('Frequency', fontsize=14)
-    
-    # checks if topic_num is provided, if yes, prints the topic num in the title, else not
-    if topic_num is not None:
-        ax.set_title(f'Keyword Frequencies for Topic #{topic_num}', fontsize=14)
-    else:
-        ax.set_title('Keyword Frequencies', fontsize=14)
-
-keywords, frequencies = get_keywords_frequencies(get_sorted_topic_keywords(7))
-# generate_barh(keywords, frequencies)
+topic_info[topic_info.Topic == 2]
 ```
 
-### 5.3.1.Visualization of Keyword Frequencies with Word Cloud
-Wordclouds are used to visualize the most common or important words in a text or set of texts. The size of the word in the wordcloud reflects its frequency in the text.
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+      <td>92</td>
+      <td>2_vr_you_to_and</td>
+      <td>If you are new to VR this item will totally blow you away. Not only is the available content dazzling, the immersive experience can make you feel as though you are actually there! So much content to add at very reasonable prices, coupled with the fact you are connected to the internet so there is virtually no limit to what you can experience and learn. Worth every penny!</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+      <td>92</td>
+      <td>2_vr_you_to_and</td>
+      <td>I recommend this to anybody who wants a bit of fun with friends and family on those long winter nights!…. VR is the future and some of the videos are incredible!… it’s like you are in the middle of it all as it happens!.. especially the VR music videos!… well with the money and the games are amazing too!…. We played this for hours and hours and it’s simple to use!… switch it on and enjoy the fun!… you can even do tours or Las Vegas or London so it’s even educational!…. You won’t believe how good this is!…..</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+      <td>92</td>
+      <td>2_vr_you_to_and</td>
+      <td>I had never tried VR before and was daunted by the setup. This was actually very easy and i had it running in no time. Sturdy and fairly comfortable. It is an incredible experience inside and i was quite amazed. 2 warnings - it is very easy to spend a lot of money very quickly by clicking on new games etc. and I felt very motion sick particularly when moving around an environment using the hand controls. Different for everyone I imagine but it was difficult for me. Also, remember you can return / refund any games etc u buy that you dont like. Overall, amaZing, and totally different. My 8 year old loves it and the whole family have tried it.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here, the customers talks about their enjoyment with the headset and how it is fun to play it with friends and family. the customer seems not to be fond of the battery life. They recommend getting a battery pack to extend the usage time
 
 
 ```python
-from wordcloud import WordCloud
-
-keyword_frequencies = dict(all_sorted_keywords)
-
-wordcloud = WordCloud(background_color='black', colormap='Blues', width=800, height=800)
-
-wordcloud.generate_from_frequencies(keyword_frequencies)
-
-# Generate the wordcloud from the keywords
-
-# Display the wordcloud
-plt.figure(figsize=(6, 6))
-plt.imshow(wordcloud, interpolation='bilinear')
-plt.axis("off")
-plt.show()
+topic_info[topic_info.Topic == 3]
 ```
 
 
-    
-![png](output_54_0.png)
-    
 
 
-We can see fron the Wordcloud that the Meta Quest 2 VR headset is a popular choice for gift giving, as the words "bought", "Christmas", "birthday", and "present" all appear prominently. This suggests that the headset is a well-liked and widely-appreciated gift. Additionally, the words "fun", "amazing", "love"and "quality" suggest that the headset is enjoyable to use and well-made. The word "family" also appears, indicating that the headset is enjoyed by multiple people in a household. Overall, the wordcloud suggests that the Meta Quest 2 VR headset is a well-received and widely-used product as a gift.
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-We will explore keyword frequencies for each topic to gain more valuable insights.
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-### 5.3.2.Visualization of Keyword Frequencies per Topic
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>3</td>
+      <td>66</td>
+      <td>3_headset_vr_to_is</td>
+      <td>I bought this item a few weeks ago and I've got to say it's the best vr headset I've ever had! And I've had a few. Great selection of games and even better if you have a capable gaming pc</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3</td>
+      <td>66</td>
+      <td>3_headset_vr_to_is</td>
+      <td>This is my second headset with the first being 64g Highly recommended to step into the future with mind blowing gaming experience.</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3</td>
+      <td>66</td>
+      <td>3_headset_vr_to_is</td>
+      <td>This is my first ever VR headset and honestly it’s actually really good and Emersive. You can definitely get lost of time and where you are standing with these. Quiet durable for the price and quite reasonable for all the qualities. Sadly though the games are expensive</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here, the first document mentions that the headset was unable to connect to the Wi-Fi or a phone's personal hotspot. as a result, the customer is planning for a refund. the second and third document seems to recommend this headset.
 
 
 ```python
-# Set the figure size
-plt.figure(figsize=(20, 60))
-
-# Loop over the range 0 to the length of the sorted_keywords_by_topic 
-for topic in range(len(sorted_keywords_by_topic)):
-    # Get the sorted topic keywords and frequencies
-    keywords, frequencies = get_keywords_frequencies(get_sorted_topic_keywords(topic))
-
-    # Create a subplot
-    ax = plt.subplot(8, 2, topic + 1)
-  
-    # Call the generate_barh function and pass the ax object
-    generate_barh(keywords, frequencies, ax, topic)
-
-# Show the plot
-plt.show()
+topic_info[topic_info.Topic == 4]
 ```
 
 
-    
-![png](output_57_0.png)
-    
 
 
-We can see again that the Meta Quest 2 is generally well-liked by reviewers. The sentiment analysis indicated that 90% of the reviews were positive, and the keywords "happy", "great", "excellent", "good", and "fun" all appear in the keyword frequencies from various topics.
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-The Meta Quest 2 may have some additional features or accessories that are appreciated by reviewers: The keywords "set", "free", and "kit" all appear in the keywords for various topics. This could suggest that the VR headset may have some additional features or accessories that are appreciated by reviewers.
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-We can also see in the top frequent words in topic 7 includes "battery" and "life," as well as other words related to battery performance, such as "use" and "controller." The high frequency of these words suggests that battery life is an important consideration for customers when evaluating the VR headset, maybe a pontential issue with the battery?
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5</th>
+      <td>4</td>
+      <td>61</td>
+      <td>4_playing_for_fun_this</td>
+      <td>Our son brought this with his birthday money. He had been wanting 1 for approx 8 months. He has not been disappointed with it and plays with it all the time.</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>4</td>
+      <td>61</td>
+      <td>4_playing_for_fun_this</td>
+      <td>Got this for my son , the whole family have not stopped playing it .</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>4</td>
+      <td>61</td>
+      <td>4_playing_for_fun_this</td>
+      <td>Bought this for my son but the whole family use and have endless fun playing with it</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
-We will breakdown the sentiment by topic to gain more insight about battery in topic 7.
 
 
-### 5.4.Analysing Sentiment by Topic
+Here the reviews are similar to the topic 0. They bought it for their son.
+
+
+```python
+topic_info[topic_info.Topic == 5]
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6</th>
+      <td>5</td>
+      <td>47</td>
+      <td>5_ago_month_bought_this</td>
+      <td>I bought this 3 weeks ago and love it</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>5</td>
+      <td>47</td>
+      <td>5_ago_month_bought_this</td>
+      <td>I bought this 1 month ago and im very happy.</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>5</td>
+      <td>47</td>
+      <td>5_ago_month_bought_this</td>
+      <td>I bought two of this a month ago and I’m happy that I did and I enjoy since then</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here it seems reviews mention how they bought the device in the past, usually a few weeks or a month ago.
+
+
+```python
+topic_info[topic_info.Topic == 6]
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7</th>
+      <td>6</td>
+      <td>41</td>
+      <td>6_quest_the_oculus_so</td>
+      <td>The Meta quest 2 is just amazing. Love it. I did get a different head strap though as the elastic one can be awkward to adjust. But this thing is incredible.</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>6</td>
+      <td>41</td>
+      <td>6_quest_the_oculus_so</td>
+      <td>Really pleased with this Quest 2. I'm completely addicted to Beat Sabre (great exercise too) and am really enjoying Superhot. Totally immersive and coupled with a ChromeCast, everyone can enjoy what the player is seeing and doing. This is one cool piece of kit.</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>6</td>
+      <td>41</td>
+      <td>6_quest_the_oculus_so</td>
+      <td>Love the meta quest 2 easy to use great games</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here, the customers express their enthusiasm and happiness about the product, in the third document, the costumer describes the benefits of upgrading from the previous Oculus (Meta) VR headset.
+
+
+```python
+topic_info[topic_info.Topic == 7]
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>8</th>
+      <td>7</td>
+      <td>33</td>
+      <td>7_happy_product_very_pleased</td>
+      <td>am very happy for this product</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>7</td>
+      <td>33</td>
+      <td>7_happy_product_very_pleased</td>
+      <td>I m very happy product l bought</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>7</td>
+      <td>33</td>
+      <td>7_happy_product_very_pleased</td>
+      <td>Very happy with product and speed of delivery</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here, the reviews are short. they talk about how they enjoy the product and service of delivery from argos in the second document.
+
+
+```python
+topic_info[topic_info.Topic == 8]
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9</th>
+      <td>8</td>
+      <td>30</td>
+      <td>8_argos_service_always_thank</td>
+      <td>Bought this for Christmas and we all love it. Quick text from Argos to say when it was ready and easy collection</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>8</td>
+      <td>30</td>
+      <td>8_argos_service_always_thank</td>
+      <td>Happy with what i bought and same day delivery was extremely quick! Cannot be more impressed with the service that Argos is giving us on a daily basis</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>8</td>
+      <td>30</td>
+      <td>8_argos_service_always_thank</td>
+      <td>I purchased this for my daughters birthday. Amazing unit first class service from Argos berryden Aberdeen.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here, it looks like the customers are very satisfied with the argos service.
+
+
+```python
+topic_info[topic_info.Topic == 9]
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>10</th>
+      <td>9</td>
+      <td>28</td>
+      <td>9_oculus_the_is_it</td>
+      <td>Got the oculus 2 for my son for Christmas it’s brilliant</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>9</td>
+      <td>28</td>
+      <td>9_oculus_the_is_it</td>
+      <td>Bought two Oculus’ literally just before Christmas. Came very quickly and kids absolutely love them. Very happy with purchess.</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>9</td>
+      <td>28</td>
+      <td>9_oculus_the_is_it</td>
+      <td>Bought Oculus and it’s great fun for the whole family</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here, it seems like the customers are talking about the VR headset specifically and are happy with the product
+
+
+```python
+topic_info[topic_info.Topic == 10]
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>11</th>
+      <td>10</td>
+      <td>27</td>
+      <td>10_family_fun_all_of</td>
+      <td>This is amazing, such fun with family and on own. You wont regret.</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>10</td>
+      <td>27</td>
+      <td>10_family_fun_all_of</td>
+      <td>All great works, we have a lot of fun as a family.</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>10</td>
+      <td>27</td>
+      <td>10_family_fun_all_of</td>
+      <td>Brilliant for the family to play, hours of fun!</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here, the reviews are very short, the customers seems to be having fun using the headset with family members.
+
+
+```python
+topic_info[topic_info.Topic == 12]
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>13</th>
+      <td>12</td>
+      <td>19</td>
+      <td>12_strap_it_is_but</td>
+      <td>Product lives up to all the hype. It’s been amazing and I’ve spent hours on it already. The strap could be improved and perhaps the battery life and charging times too.</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>12</td>
+      <td>19</td>
+      <td>12_strap_it_is_but</td>
+      <td>-The headstrap is fine, it doesnt feel too front heavy. -The battery life is fine, I get tired after one hour anyway -Any USB 3 rated for transfer can be used, don't buy the official one -Use a referral link to get store credit -The TOS is iffy but soon it should change as the Facebook account requirement is going to be removed</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>12</td>
+      <td>19</td>
+      <td>12_strap_it_is_but</td>
+      <td>Blown away by how cool this is and how much content that is available for the device. The head strap it comes with is serviceable but not brilliant and restricts your play time as it gets uncomfortable. cheap replacements are available though and they totally transform it.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here, it looks like the customers are talking about the VR headset specifically. all of these reviews mentions that there are some issues with the battery life, the charging the time and the don't seem to like the idea of using a Facebook (Meta) account in order to use the headset. They also seem to not like the strap that comes with headset.
+
+
+```python
+topic_info[topic_info.Topic == 13]
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>14</th>
+      <td>13</td>
+      <td>18</td>
+      <td>13_immersive_games_nintendo_or</td>
+      <td>This is the beginnings of so much fun , so realistic from drone footage as if you are sitting in the top of the drone. Game play can be quite scary, especially with headphones on though the speakers are great ! Great product and purchase</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>13</td>
+      <td>18</td>
+      <td>13_immersive_games_nintendo_or</td>
+      <td>After trying this at a friends i just had to buy one. Cant believe how immersive the experience is. Have not bought various games for both myself and son. Amazing.</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>13</td>
+      <td>18</td>
+      <td>13_immersive_games_nintendo_or</td>
+      <td>The immersion is good. Also good that you don't have to be connected to any PC or console.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here, the customers are talking about  how the headset provides an immersive experience.
+
+
+```python
+topic_info[topic_info.Topic == 14]
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>15</th>
+      <td>14</td>
+      <td>17</td>
+      <td>14_experience_fun_brilliant_wasnt</td>
+      <td>Absolutely brilliant. Exactly as described.</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>14</td>
+      <td>17</td>
+      <td>14_experience_fun_brilliant_wasnt</td>
+      <td>Excellent, great experience so much fun</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>14</td>
+      <td>17</td>
+      <td>14_experience_fun_brilliant_wasnt</td>
+      <td>Absolutely amazing. Mind blown!</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here, the reviews are very short. They enjoyed the product and the expections were met.
+
+
+```python
+topic_info[topic_info.Topic == 15]
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>16</th>
+      <td>15</td>
+      <td>16</td>
+      <td>15_exercise_fitness_and_for</td>
+      <td>I bought this a few weeks ago and still enjoying every day. Good stuff to burn some calories and for daily exercise.</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>15</td>
+      <td>16</td>
+      <td>15_exercise_fitness_and_for</td>
+      <td>It’s excellent for family and friends good fitness as well as very active</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>15</td>
+      <td>16</td>
+      <td>15_exercise_fitness_and_for</td>
+      <td>Worth it just for the fun and exercise</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+This topic is talking about how people use the device for exercise and fitness.
+
+
+```python
+topic_info[topic_info.Topic == 16]
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>17</th>
+      <td>16</td>
+      <td>12</td>
+      <td>16_kids_love_fun_ages</td>
+      <td>Best thing to keep kids quiet, it's amazing</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>16</td>
+      <td>12</td>
+      <td>16_kids_love_fun_ages</td>
+      <td>At least my kids r enjoying it</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>16</td>
+      <td>12</td>
+      <td>16_kids_love_fun_ages</td>
+      <td>Kidsl9ved it great fun for all ages</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here, the reviews talk about how they love it.
+
+
+```python
+topic_info[topic_info.Topic == 17]
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>18</th>
+      <td>17</td>
+      <td>12</td>
+      <td>17_kit_piece_of_bit</td>
+      <td>This was a gift , a great idea but the fitting could be improved</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>17</td>
+      <td>12</td>
+      <td>17_kit_piece_of_bit</td>
+      <td>Amazing piece of kit</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>17</td>
+      <td>12</td>
+      <td>17_kit_piece_of_bit</td>
+      <td>My son is extremely happy with this, a brill bit of kit</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here the reviews seem to refer to the device as kit.
+
+
+```python
+topic_info[topic_info.Topic == 18]
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>19</th>
+      <td>18</td>
+      <td>11</td>
+      <td>18_good_great_easy_item</td>
+      <td>Great item good free content</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>18</td>
+      <td>11</td>
+      <td>18_good_great_easy_item</td>
+      <td>Great item, easy to buy</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>18</td>
+      <td>11</td>
+      <td>18_good_great_easy_item</td>
+      <td>Excellent value for money. Happy customer would definitely recommend</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here, the reviews talks about how the product is excellent quality price.
+
+
+```python
+topic_info[topic_info.Topic == 19]
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>20</th>
+      <td>19</td>
+      <td>11</td>
+      <td>19_battery_product_life_family</td>
+      <td>The battery life is a bit rubbish but this is an amazing product</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>19</td>
+      <td>11</td>
+      <td>19_battery_product_life_family</td>
+      <td>Such an enjoyable device family loves it so much!! Do recommend buying it</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>19</td>
+      <td>11</td>
+      <td>19_battery_product_life_family</td>
+      <td>brought this 2 weeks ago and i absolutely love it, besides the battery life. it does everything i expected and more. worth every penny!</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here, the reviews notes that the battery life is not ideal
+
+
+```python
+topic_info[topic_info.Topic == 20]
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>21</th>
+      <td>20</td>
+      <td>11</td>
+      <td>20_moon_over_hes_with</td>
+      <td>I bought this for my sons birthday he was over the moon</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>20</td>
+      <td>11</td>
+      <td>20_moon_over_hes_with</td>
+      <td>Bought for Grandson he's over the moon with it.</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>20</td>
+      <td>11</td>
+      <td>20_moon_over_hes_with</td>
+      <td>Mycson is over the moon with this product well made and well designed</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here users refer to being "over the moon" with the device and very pleased.
+
+
+```python
+topic_info[topic_info.Topic == 21]
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic</th>
+      <th>Count</th>
+      <th>Name</th>
+      <th>representative_doc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>22</th>
+      <td>21</td>
+      <td>10</td>
+      <td>21_the_you_to_of</td>
+      <td>Im still blown away by the oculus and so are all my friends who have a go. You will not regret buying one of these. No PC required, great graphics and truly immersive game play.</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>21</td>
+      <td>10</td>
+      <td>21_the_you_to_of</td>
+      <td>Have been waiting to get an Xbox series X. But after it’s taken so long I decided to try the world or VR without a Pc. Great for those into gaming and those who aren’t. My other half uses it for escape rooms. Downside is that streaming drops out often abs you can only export videos via Facebook which isn’t useful.</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>21</td>
+      <td>10</td>
+      <td>21_the_you_to_of</td>
+      <td>I bought this expecting a basic VR experience. The VR itself and the games are so much more immersive than I thought they would be. There are tonnes of options for everyone in the game store and app lab. The battery time isn't the best (about 1 hour) but it does charge very quickly and you can buy straps with battery extenders built in. The guardian wall really makes this oculus stand out about anything else, it gives you a safe space in your home that you can move around in. Highly recommended.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+Here we notice that the length of the reviews is significantly longer with users going into more detail. The Second customer mentions that the headset can make users dizzy (motion-sickness) and notes that the battery life is short.
+
+## 5.3. Summary of identified topics
+We saw many reviews talk about the VR headset and general positive experience. Many talk about the family aspect of buying the game as a present, which alligns with timeseries analysis peak during chistmas period.
+
+We saw other topics such as strap, exercise, battery life. the customers seems to complain about the battery life. we can further investigate it by breaking down sentiment by topic.
+
+## 5.4. Analysing Sentiment by Topic
 We will breakdown the sentiment by topic so that we can see how the sentiment of the reviews differs across different topics. 
 
-#### 5.4.1.Breakdown sentiment by topic
+### 5.4.1. Breakdown sentiment by topic
 
 Breaking down sentiment by topic means analyzing the sentiment of the reviews for each topic separately. Here's the procedure to break it down:
 
@@ -1310,65 +2933,102 @@ pd.DataFrame(topic_sentiment)
       <th>6</th>
       <th>7</th>
       <th>8</th>
-      <th>9</th>
-      <th>10</th>
+      <th>...</th>
+      <th>12</th>
+      <th>13</th>
+      <th>14</th>
+      <th>15</th>
+      <th>16</th>
+      <th>17</th>
+      <th>18</th>
+      <th>19</th>
+      <th>20</th>
+      <th>21</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>negative</th>
-      <td>2.307692</td>
-      <td>4.113111</td>
-      <td>2.793296</td>
-      <td>4.458599</td>
-      <td>8.433735</td>
+      <td>3.341902</td>
+      <td>3.070175</td>
+      <td>3.738318</td>
+      <td>5.434783</td>
+      <td>NaN</td>
+      <td>6.557377</td>
+      <td>10.638298</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>4.166667</td>
-      <td>4.545455</td>
-      <td>9.523810</td>
+      <td>3.333333</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>5.555556</td>
+      <td>NaN</td>
       <td>6.25</td>
       <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9.090909</td>
+      <td>NaN</td>
+      <td>10.0</td>
     </tr>
     <tr>
       <th>neutral</th>
-      <td>9.230769</td>
-      <td>2.313625</td>
-      <td>8.379888</td>
-      <td>0.636943</td>
-      <td>3.614458</td>
+      <td>5.398458</td>
+      <td>8.771930</td>
+      <td>1.869159</td>
+      <td>4.347826</td>
+      <td>NaN</td>
+      <td>3.278689</td>
+      <td>4.255319</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>18.181818</td>
-      <td>4.761905</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.882353</td>
       <td>6.25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>54.545455</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>positive</th>
-      <td>88.461538</td>
-      <td>93.573265</td>
-      <td>88.826816</td>
-      <td>94.904459</td>
-      <td>87.951807</td>
+      <td>91.259640</td>
+      <td>88.157895</td>
+      <td>94.392523</td>
+      <td>90.217391</td>
+      <td>100.0</td>
+      <td>90.163934</td>
+      <td>85.106383</td>
       <td>100.0</td>
       <td>100.0</td>
-      <td>95.833333</td>
-      <td>77.272727</td>
-      <td>85.714286</td>
+      <td>96.666667</td>
+      <td>...</td>
+      <td>100.0</td>
+      <td>94.444444</td>
+      <td>94.117647</td>
       <td>87.50</td>
       <td>100.0</td>
+      <td>100.0</td>
+      <td>100.0</td>
+      <td>90.909091</td>
+      <td>45.454545</td>
+      <td>90.0</td>
     </tr>
   </tbody>
 </table>
+<p>3 rows × 23 columns</p>
 </div>
 
 
 
 To better understand the results, we will create a visualization to represent the sentiment per topic more intuitively.
 
-#### 5.4.2.Visualize Sentiment per Topic
+### 5.4.2. Visualize Sentiment per Topic
 
 
 ```python
@@ -1405,7 +3065,7 @@ plt.plot(x_values, negative_values, label='Negative')
 
 # add a title and axis labels
 plt.title('Sentiment Analysis')
-plt.xlabel('X-axis')
+plt.xlabel('Topics')
 plt.ylabel('Sentiment Percentage')
 
 # add a legend
@@ -1417,421 +3077,34 @@ plt.show()
 
 
     
-![png](output_65_0.png)
+![png](output_127_0.png)
     
 
 
-it appears that there is a significant decline at topic 7 in the percentage of positive sentiment and an increase in neutral and negative sentiment. This suggests that there are issues with the battery life of the Meta Quest 2 that are causing dissatisfaction among users. The specific reasons for this decline in positive sentiment could be further explored.
+it appears that there is a significant decline at topic 20 in the percentage of positive sentiment and an increase in neutral. This confirms that there are issues with the battery life of the Meta Quest 2 that are causing dissatisfaction among users.
 
-
-```python
-df[(df.topic == 7)]
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>title</th>
-      <th>reviews</th>
-      <th>location</th>
-      <th>timestamp</th>
-      <th>sentiment</th>
-      <th>topic</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>48</th>
-      <td>Incredible tech</td>
-      <td>apprehensive buying thought might something use couple time put never use wrong use every day completely different way play game socialise careful though found certain game experience give motion sickness eye strain prolonged use also battery life terrible charging lot let thing put though really amazing bit kit</td>
-      <td>Stoke-on-Trent</td>
-      <td>2022-10-19</td>
-      <td>positive</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>72</th>
-      <td>Faulty controller</td>
-      <td>one controller keep sticking</td>
-      <td>N/A</td>
-      <td>2022-09-27</td>
-      <td>neutral</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>159</th>
-      <td>Love it</td>
-      <td>brilliant system bug still expected battery life bout 2hours advanced gaming purchase elite head strap additional battery pack really made white though due sweat turning greyish brown haha</td>
-      <td>Sheffield</td>
-      <td>2022-07-13</td>
-      <td>positive</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>240</th>
-      <td>Great quality</td>
-      <td>bought son happy thing would suggest hand controller instead battery built battery charge otherwise absolutely fantastic</td>
-      <td>Portslade</td>
-      <td>2022-05-10</td>
-      <td>positive</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>244</th>
-      <td>Good</td>
-      <td>side u battery u dnt pc steam</td>
-      <td>Birmingham</td>
-      <td>2022-05-04</td>
-      <td>neutral</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>311</th>
-      <td>Really cool</td>
-      <td>small full power lightweight</td>
-      <td>London</td>
-      <td>2022-03-23</td>
-      <td>neutral</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>328</th>
-      <td>Amazing VR, good build quality</td>
-      <td>downside short battery life approx 1 5 hour might positive stop playing eleven table tennis day</td>
-      <td>N/A</td>
-      <td>2022-03-16</td>
-      <td>positive</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>450</th>
-      <td>What i was expecting from it</td>
-      <td>bought month two ago non stop thing thats negative battery life</td>
-      <td>Sheffield</td>
-      <td>2022-02-11</td>
-      <td>negative</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>482</th>
-      <td>It's almost great</td>
-      <td>battery last long ok remote started going one way 2 week also need space play game overall great product</td>
-      <td>N/A</td>
-      <td>2022-02-08</td>
-      <td>positive</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>583</th>
-      <td>Amazing</td>
-      <td>battery life bit rubbish amazing product</td>
-      <td>N/A</td>
-      <td>2022-01-19</td>
-      <td>positive</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>602</th>
-      <td>Great kids love it</td>
-      <td>great item battery life seem la long maybe faulty battery</td>
-      <td>Leicester</td>
-      <td>2022-01-19</td>
-      <td>positive</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>640</th>
-      <td>Fantastic and value for money</td>
-      <td>content purchase endless amount fun thing battery last long 2 hour overcome connecting long usb c power bank</td>
-      <td>N/A</td>
-      <td>2022-01-12</td>
-      <td>positive</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>709</th>
-      <td>Great fun</td>
-      <td>brought christmas gift husband get great fun use load different thing complain much gaming get physical exercise well thing clear easy use</td>
-      <td>Stonea</td>
-      <td>2022-01-07</td>
-      <td>positive</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>759</th>
-      <td>VR for the future</td>
-      <td>using since christmas amazing would strongly suggest try demo version game buying love game love quality love use plugged watch youtube netflix etc etc amazing battery last quite well option plug power pack playing official version great use pack standard usb c 90 deg adaptor specific wire comfortable wire work</td>
-      <td>Wales</td>
-      <td>2022-01-05</td>
-      <td>positive</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>822</th>
-      <td>Great features</td>
-      <td>little bit heavy</td>
-      <td>London</td>
-      <td>2022-01-05</td>
-      <td>neutral</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>837</th>
-      <td>Amazing</td>
-      <td>best thing bought fantastic family spent hour since got wish longer battery life need changing much addicted</td>
-      <td>Liverpool</td>
-      <td>2022-01-05</td>
-      <td>positive</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>865</th>
-      <td>Son very happy</td>
-      <td>bought many christmas present son seems happy comment longevity use battery life easy always deal argo</td>
-      <td>West Yorkshire</td>
-      <td>2022-01-04</td>
-      <td>positive</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>866</th>
-      <td>Great fun</td>
-      <td>bought partner love would recommend product side battery last two hour</td>
-      <td>Ossett</td>
-      <td>2022-01-04</td>
-      <td>positive</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>1101</th>
-      <td>Good standalone vr experience</td>
-      <td>need pc run well battery life good</td>
-      <td>Chorley</td>
-      <td>2021-12-08</td>
-      <td>positive</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>1118</th>
-      <td>Love it</td>
-      <td>bought 6th november playing took wacks controller sign damage anything love would recommend battery like last around 2 3 hour maybe depending game one small headset considering thats amazing</td>
-      <td>South east</td>
-      <td>2021-11-24</td>
-      <td>positive</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>1192</th>
-      <td>Amazing gaming machine</td>
-      <td>brilliant piece kit lot lot realise good actually use would suggest buying battery pack alongside battery best free game app store lot payed game also ranging 4 99 29 99</td>
-      <td>Pontypridd</td>
-      <td>2021-10-27</td>
-      <td>positive</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>1284</th>
-      <td>Amazing product</td>
-      <td>comfortable absolutely amazing pas time loved spending time friend game available battery life long ok use full battery life one ru anyway controller easy use button spaced apart right</td>
-      <td>Scarborough</td>
-      <td>2021-09-29</td>
-      <td>positive</td>
-      <td>7</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-We can see from these reviews of topic 7 that many of the reviewers mentioned that the battery life is a concern for example, in index 583, the reviewer said that the battery life is abit rubbish however the product is amazing. We can also see in index 450 said that the battery life is negative.
-
-We will explore and can gain more insights about topic 7 and other topics using the representative documents which is more reliable in the next section. 
-
-### 5.6.Topic Insights with Representative documents
-
-We will explore the results of our topic modeling by interpreting the representative documents for each identified topic. They are chosen based on their high relevance to a particular topic and their ability to capture the main themes and ideas present in the dataset. We can gain insights into the content and focus of each topic. We will also consider any common patterns or issues that emerge across multiple topics.
-
-
-
-```python
-# create dataframe with a column for the topic number and representative document
-df_ = pd.DataFrame(columns=['topic_num', 'representative_doc'])
-
-# loop through the topic numbers and representative documents
-for topic_num in range(11):
-    representative_doc = topic_model.representative_docs_[topic_num]
-    # add a new row to the dataframe with the topic number and representative document
-    df_ = df_.append({'topic_num': topic_num, 'representative_doc': representative_doc}, ignore_index=True)
-df_
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>topic_num</th>
-      <th>representative_doc</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0</td>
-      <td>[play video game get workout excellent technology great way experience video game different dimension get used motion screen front enjoy moment technology great experience pas get added benefit getting workout hour beat saber really get sweat get heart pumping love using mine used almost every day since even meeting friend virtual room chatting like right front, headset amazing picture clear look fantastic easy put play friend around world even work small space wish battery lasted longer last couple hour would highly recommend, bought oculus son thinking oil like vr brand know next level boy asked play stop playing absolutely loving]</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-      <td>[bought xmas went bought another one good, got 9yo fir christmas absolutely love great value money, bought 11 yr old son love]</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2</td>
-      <td>[bought christmas present son loved take evan older daughter enjoyed grate could take require electronic e g pc tv loved gift considering bye think twice, partner bought 12 yr old 10 yr old love graphic excellent easy load pay game app depending game keep kid active moving around even adult loving, brought child christmas honestly say best christmas present got easy use heavy head load choice game store easy set tutorial easy follow]</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>3</td>
-      <td>[bought two month ago happy enjoy since, bought month ago happy, bought monts ago happy use]</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>4</td>
-      <td>[work great issue far, really excellent product, amazing product]</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>5</td>
-      <td>[great game member family loved, excellent family friend good fitness well active, great fun family]</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>6</td>
-      <td>[always happy everything purchased argo, bought ago partner love great service argo always, happy find argo needed ordered game son]</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>7</td>
-      <td>[content purchase endless amount fun thing battery last long 2 hour overcome connecting long usb c power bank, bought month two ago non stop thing thats negative battery life, downside short battery life approx 1 5 hour might positive stop playing eleven table tennis day]</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>8</td>
-      <td>[absolutely blown mind feel like im different world play hour forget im stood lounge love much, get one much fun, fantastic world]</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>9</td>
-      <td>[bought week ago glad one best way play exercise beat saber favourite way pas time, bought month ago really gamer needed start exercise hate meta quest 2 fun exercising beat saber favourite lot feature make great purchase, bought week ago still enjoying every day good stuff burn calorie daily exercise]</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>10</td>
-      <td>[son extremely happy brill bit kit, great bit kit family, brilliant piece kit]</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-We can see in the representative document Topic 7, "bought month two ago non stop thing thats negative battery life" and "downside short battery life approx 1 5 hour might positive stop playing eleven table tennis day" this clearly describes the battery life in a negative way.
-
-We can also see that in the representative document in Topic 5, "excellent family friend good fitness well active" which suggests that the Meta Quest 2 helps people stay active and fit.
-
-For the rest of the topics, We can see in the representative documents that they are talking about their experiences with the Meta Quest 2. We can see that the sentiment of the reviewers appears to be very positive. Finally, it also seems that the Meta Quest 2 headset is enjoyed as a gift "bought xmas" " bought 11 yr old son", and appears to be well-received "happy", "great".
-
-### 5.7.Topics over Time
-topics over time is a visual representation of the prevalence of  topics in a dataset over a period of time.
-
-<code> note that you need to run this code on jupyter notebook to see the plot </code>
-
-
-```python
-topics_over_time = topic_model.topics_over_time(docs, df['timestamp'])
-topic_model.visualize_topics_over_time(topics_over_time)
-```
-
-<code>We saved the topics over time as an image in case the BERTopic visualization of topics overtime doesn't work, as it is an interactive plot. This way, we can still view and analyze the trends in the topics over time even if the interactive plot is not functioning properly. </code>
-
-
-```python
-from IPython.display import display
-from PIL import Image
-
-# Read the image file into memory using the Image class
-image = Image.open("assets/topics-over-time.png")
-
-# Display the image
-display(image)
-```
-
-
-    
-![png](output_75_0.png)
-    
-
-
-We can see that there was a significant increase in the number of reviews discussing VR technology and the Meta Quest 2 headset (topic 0) and the product being purchased as a gift, particularly for Christmas (topic 1) in the period from December 2021 to February 2022. This could suggest that the VR headset was a popular gift during the holiday season and that there was an overall increase in interest in the product during this time. The other topics also experienced a peak in this time period, but not to the same extent as topics 0 and 1, suggesting that they may not have been as central to the conversations around the product during this time.
-
-## 6.External Validation
+# 6.External Validation
 Incorporating independent findings into our conclusions is essential for ensuring the validity and credibility of our study. By consulting external evidence, we can validate our own conclusions. Additionally, considering multiple perspectives and professional respectable sources can help us to better understand the concerns of the product.
 
 According to PCMag [13], battery life is one of the main issues for standalone VR headsets, including the Meta Quest 2. CNET [14] reports that the headset has a battery life of two to three hours, which may not be sufficient for longer play sessions. Techspot [15] lists the short battery life as a con of the headset, stating that it only lasts for two to three hours. Mashable [16] also notes that the battery life of the Meta Quest 2 VR headset could be longer. These findings from independent tech industry sources [13, 14, 15, 16] suggest that battery life may be a concern for users of the Meta Quest 2 VR headset.
 
-## 7.Conclusion
+# 7.Conclusion
 Our analysis of customer reviews of the Meta Quest 2 VR headset revealed that battery life was a common concern among users. Upon conducting sentiment analysis on this topic, we observed a decline in positive sentiments and an increase in neutral and negative sentiments in the topic about battery. This trend suggests that the battery lifespan of the Meta Quest 2 VR headset may be perceived as short by users. To further confirm our findings, we consulted multiple well-respected tech industry sources, including PCMag [20], CNET [21], Techspot [22], and Mashable [23], which all identified battery life as a common drawback of the Meta Quest 2 VR headset. 
 
 In summary, our study concluded that the battery lifespan of the Meta Quest 2 VR headset has a potential area for improvement. as supported by both our analysis on the customer reviews and independent sources.
 
-## 8.Future Work
+# 8.Future Work
 
-- Explore other neural models for Topic Modelling and compare their performance to the BERTopic model 
-- Investigate the effectiveness of the extracted keywords for applications such as text summarization 
-- Apply Time-series analysis to see the relationship between sentiment over time 
+- Explore neural network models for sentiment analysis and compare their performance to the current method which we saw struggled in certain situations.
+- Explore neural network models for text summarization to summarize topics per review and potentially per sentiment. 
+- Parse data for other products to be able to compare results across products.
  
 
 
-## 9.References and Resources
-### 9.1.References
+# 9.References and Resources
+## 9.1.References
 
-#### General
+### General
 - Topic modelling inspired from https://towardsdatascience.com/topic-modeling-with-bert-779f7db187e6
 - Sentiment Analysis inspired from https://www.analyticsvidhya.com/blog/2022/10/sentiment-analysis-using-vader/
 - [1] Sentiment analysis: Why it's necessary and how it improves CX from https://www.techtarget.com/searchcustomerexperience/tip/Sentiment-analysis-Why-its-necessary-and-how-it-improves-CX 
@@ -1845,48 +3118,48 @@ In summary, our study concluded that the battery lifespan of the Meta Quest 2 VR
 - [11] Lemmatize definition from https://www.geeksforgeeks.org/python-lemmatization-with-nltk/
 - [12] Keywords definition from https://maartengr.github.io/KeyBERT/api/keybert.html
 
-####  Ethical considerations 
+###  Ethical considerations 
 - [5] Argos terms and conditions from https://www.argos.co.uk/help/terms-and-conditions/
 - [6] Argos robots.txt from https://www.argos.co.uk/robots.txt
 
-#### External Validation and Conclusion
+### External Validation and Conclusion
 
 - [13] PCMag Oculus Quest 2 review from https://www.pcmag.com/reviews/oculus-quest-2
 - [14] CNET Oculus Quest 2 review from https://www.cnet.com/tech/gaming/facebook-oculus-quest-2-vr-review-one-of-my-favorite-game-consoles/
 - [15] Techspot Oculus Quest 2 review from https://www.techspot.com/products/audio-video/oculus-quest-2.224801/
 - [16] Mashable Oculus Quest 2 review from https://mashable.com/review/oculus-quest-2-review 
 
-### 9.2.Code
-#### General
+## 9.2.Code
+### General
 - Using lambda function with Pandas DataFrames from https://pandas.pydata.org/pandas-docs/stable/user_guide/apply.html
 - Lambda function with pandas DataFrame from : www.geeksforgeeks.org/applying-lambda-functions-to-pandas-dataframe/
 - Error Handling and Defensive coding from Dr. Matthew Yee-King CM2010 Software Design And Development Topic 3
 
-#### Web Scraping 
+### Web Scraping 
 - 5.13 Webscraping and APIs with Llewelyn Fernandes
 - Selenium waits from https://selenium-python.readthedocs.io/waits.html
 - Worked examples of lambda function from https://sparkbyexamples.com/pandas/pandas-apply-with-lambda-examples/
 - Validating string from https://bobbyhadz.com/blog/python-validate-string-input
 
-#### Data and Text Preprocessing 
+### Data and Text Preprocessing 
 - Converting string to datetime format and object inspired from https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior
 - Removing special charactres and punctuations code inspired from https://stackoverflow.com/questions/18429143/strip-punctuation-with-regex-python 
 - Removing stop words inspired from https://www.geeksforgeeks.org/removing-stop-words-nltk-python/
 - Lemmatizing using NLTK from https://www.geeksforgeeks.org/python-lemmatization-with-nltk/
 - removing stop words with NLTK from https://www.geeksforgeeks.org/removing-stop-words-nltk-python/
 
-#### Sentiment Analysis
+### Sentiment Analysis
 - Revision lab 3 - pre-processing text Dr. Sean McGrath
 - Sentiment Analysis using Vader from https://www.nltk.org/api/nltk.sentiment.vader.html
 - Sentiment Analysis calculatuing compound score from https://github.com/cjhutto/vaderSentiment#about-the-scoring
 
-#### Topic Modelling
+### Topic Modelling
 - Topic Modelling with BERT from https://towardsdatascience.com/topic-modeling-with-bert-779f7db187e6
 - Dinensionality reduction from https://en.wikipedia.org/wiki/Dimensionality_reduction
 - BERTopic from https://spacy.io/universe/project/bertopic
 - BERTopic, Getting the same results https://maartengr.github.io/BERTopic/faq.html#why-are-the-results-not-consistent-between-runs
 - BERTopic, Calculate topics probability from https://maartengr.github.io/BERTopic/faq.html#how-do-i-calculate-the-probabilities-of-all-topics-in-a-document
 
-#### Visualization
+### Visualization
 - BERTopic Visualization from https://maartengr.github.io/BERTopic/getting_started/visualization/visualization.html
 - Wordcloud inspiration from https://www.kaggle.com/code/anandhuh/word-cloud-in-python-for-beginners
