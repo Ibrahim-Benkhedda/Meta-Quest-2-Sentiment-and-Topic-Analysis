@@ -120,7 +120,7 @@ Web scraping is the process of extracting data from websites by using automated 
 
 Selenium is an open-source library that allows developers to write scripts in various programming languages to automate web browser interactions. It can simulate user actions such as clicking links, filling out forms, and navigating pages, and it can extract data from the web pages by using techniques such as web element selection, DOM parsing, and XPath queries. [7] 
 
-For our study, we use Selenium to navigate to the product page of Meta Quest 2 VR on the Argos website and retrieve the reviews, location of the reviewer, and timestamp of the review. We write code that uses the Selenium webdriver to open a web browser, navigate to the product page, and extract the data from the page elements. We also implement error handling and retry logic to ensure that the script can handle any issues that might arise during the scraping process, such as network errors or changes in the page structure. Here's the explanation in a procedural way
+For our study, we use Selenium to navigate to the product page of Meta Quest 2 VR on the Argos website and retrieve the reviews, user information of the reviewer, and timestamp of the review. We write code that uses the Selenium webdriver to open a web browser, navigate to the product page, and extract the data from the page elements. We also implement error handling and retry logic to ensure that the script can handle any issues that might arise during the scraping process, such as network errors or changes in the page structure. Here's the explanation in a procedural way
     
 <ol>
     <li>The Chrome web driver opens and navigates to the specified URL.</li>
@@ -989,7 +989,7 @@ from nltk.probability import FreqDist
 wordcloud = WordCloud(background_color='black', colormap='Blues', width=800, height=800)
 
 # Generate the wordcloud from the keywords
-words = " ".join(df.reviews.to_list())
+words = concatenate_words(df.reviews.to_list())
 wordcloud.generate(words)
 
 # Display the wordcloud
@@ -1357,7 +1357,7 @@ docs = df.unfiltered_reviews
 #  - n_components: the number of dimensions to reduce the data to using UMAP
 #  - min_dist: the minimum distance between points in the UMAP space
 #  - metric: the distance metric used to calculate distances in the UMAP space
-#  - random_state: the seed for the UMAP random number generator (default seed I used is 43)
+#  - random_state: the seed for the UMAP random number generator (default seed I used is 43) PS: you might get different results from another machine.
 umap_model = UMAP(n_neighbors=15, n_components=5, 
                   min_dist=0.0, metric='cosine', random_state=43)
 
@@ -1547,6 +1547,8 @@ topic_info
 
 The results show the topics identified by the model, along with the topic count as well as a description of the topic. The "-1" topic is typically a noise term that should be ignored, as it is often used to represent documents that do not fit into any of the other identified topics. The remaining topics represent the main themes or topics present in the collection of documents which we will look into.
 
+## 5.2. Detailed Topic Insight
+
 We can add the representative reviews which are 3 reviews for each topic that best represent the topic.
 
 
@@ -1554,8 +1556,6 @@ We can add the representative reviews which are 3 reviews for each topic that be
 # add review topics to dataframe
 df["topic"] = topics
 ```
-
-## 5.2. Detailed Topic Insight
 
 
 ```python
@@ -1603,21 +1603,21 @@ topic_info[topic_info.Topic == 0]
       <td>0</td>
       <td>228</td>
       <td>0_my_for_loves_it</td>
-      <td>My son loves this. Great fun</td>
+      <td>I bought this for my sons birthday, he absolutely loves it. It’s so realistic, I know as I have tried.</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0</td>
       <td>228</td>
       <td>0_my_for_loves_it</td>
-      <td>Bought for my son for Christmas, highly recommend</td>
+      <td>Bought for wee brother, absolutely loves it, great for children and adults</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0</td>
       <td>228</td>
       <td>0_my_for_loves_it</td>
-      <td>I bought this for my sons 10th birthday and he absolutely loves it!!</td>
+      <td>One of thebest gifts</td>
     </tr>
   </tbody>
 </table>
@@ -1665,13 +1665,6 @@ topic_info[topic_info.Topic == 1]
       <td>1</td>
       <td>107</td>
       <td>1_games_for_and_to</td>
-      <td>This machine is great, I bought it a month ago and it has completely reinvigorated my love for gaming.</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1</td>
-      <td>107</td>
-      <td>1_games_for_and_to</td>
       <td>I bought this for my sons birthday - brilliant but of tech though the games are quite pricey - not many free things to choose from!</td>
     </tr>
     <tr>
@@ -1679,7 +1672,14 @@ topic_info[topic_info.Topic == 1]
       <td>1</td>
       <td>107</td>
       <td>1_games_for_and_to</td>
-      <td>Bought for the kids but I'm using it more than them. Really interesting to see how immersive this is. Not much free content but most games aren't too expensive. Very happy with the purchase.</td>
+      <td>I brought this couple weeks ago and loved it ever since, gamers are a little expensive for some but its like any console you buy!</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>107</td>
+      <td>1_games_for_and_to</td>
+      <td>I really recommend it to anyone especially who likes xbox etc. this is 100 times better!</td>
     </tr>
   </tbody>
 </table>
@@ -1687,7 +1687,7 @@ topic_info[topic_info.Topic == 1]
 
 
 
-Here, the customer talks about pleased with the purchase. However, there's a lack variety of games. in the 3rd document, it seems like customer is unhappy about the battery life of the headset which they felt it was too short.
+Here, the customer talks about the gaming aspect of the VR headset.
 
 
 ```python
@@ -1727,21 +1727,21 @@ topic_info[topic_info.Topic == 2]
       <td>2</td>
       <td>92</td>
       <td>2_vr_you_to_and</td>
-      <td>If you are new to VR this item will totally blow you away. Not only is the available content dazzling, the immersive experience can make you feel as though you are actually there! So much content to add at very reasonable prices, coupled with the fact you are connected to the internet so there is virtually no limit to what you can experience and learn. Worth every penny!</td>
+      <td>I have wanted to get into VR for a while, this was an amazing starter set with alot of fun games and experiences, a little heavy after wearing for long periods of times</td>
     </tr>
     <tr>
       <th>3</th>
       <td>2</td>
       <td>92</td>
       <td>2_vr_you_to_and</td>
-      <td>I recommend this to anybody who wants a bit of fun with friends and family on those long winter nights!…. VR is the future and some of the videos are incredible!… it’s like you are in the middle of it all as it happens!.. especially the VR music videos!… well with the money and the games are amazing too!…. We played this for hours and hours and it’s simple to use!… switch it on and enjoy the fun!… you can even do tours or Las Vegas or London so it’s even educational!…. You won’t believe how good this is!…..</td>
+      <td>When I got the vr I was so excited to use and I would rate it a 10 out of 10 especially the games on there. Only one thing I don't like is the battery life is only about a hour if you use. If you do buy this I recommend you get a battery pack to get those long hours in.</td>
     </tr>
     <tr>
       <th>3</th>
       <td>2</td>
       <td>92</td>
       <td>2_vr_you_to_and</td>
-      <td>I had never tried VR before and was daunted by the setup. This was actually very easy and i had it running in no time. Sturdy and fairly comfortable. It is an incredible experience inside and i was quite amazed. 2 warnings - it is very easy to spend a lot of money very quickly by clicking on new games etc. and I felt very motion sick particularly when moving around an environment using the hand controls. Different for everyone I imagine but it was difficult for me. Also, remember you can return / refund any games etc u buy that you dont like. Overall, amaZing, and totally different. My 8 year old loves it and the whole family have tried it.</td>
+      <td>I would have personally left 3 star as the interface is not so friendly for the first set up. But my children are fascinated with it and are using the VR all the time. It's working fine so far, and I admit is a good quality product.</td>
     </tr>
   </tbody>
 </table>
@@ -1789,21 +1789,21 @@ topic_info[topic_info.Topic == 3]
       <td>3</td>
       <td>66</td>
       <td>3_headset_vr_to_is</td>
-      <td>I bought this item a few weeks ago and I've got to say it's the best vr headset I've ever had! And I've had a few. Great selection of games and even better if you have a capable gaming pc</td>
+      <td>Had this for around 1 month and its amazing. First VR headset ever and I must say they are now impressive. Couldnt tell you any difference between other vr headsets on the market but totally impressed with yhis. Only downside is the amount of battery life. Lasts 2-3 hours and then needs a good few hours to charge. Tbh tho theres a real world to explore aswell so a couple of hours should be plenty!!</td>
     </tr>
     <tr>
       <th>4</th>
       <td>3</td>
       <td>66</td>
       <td>3_headset_vr_to_is</td>
-      <td>This is my second headset with the first being 64g Highly recommended to step into the future with mind blowing gaming experience.</td>
+      <td>I purchased this Headset as a birthday gift. It's amazing. Very clear graphics and long lasting battery.</td>
     </tr>
     <tr>
       <th>4</th>
       <td>3</td>
       <td>66</td>
       <td>3_headset_vr_to_is</td>
-      <td>This is my first ever VR headset and honestly it’s actually really good and Emersive. You can definitely get lost of time and where you are standing with these. Quiet durable for the price and quite reasonable for all the qualities. Sadly though the games are expensive</td>
+      <td>I bought this VR headset and have no complaints. The headset works perfectly and there are no faults.</td>
     </tr>
   </tbody>
 </table>
@@ -1811,7 +1811,7 @@ topic_info[topic_info.Topic == 3]
 
 
 
-Here, the first document mentions that the headset was unable to connect to the Wi-Fi or a phone's personal hotspot. as a result, the customer is planning for a refund. the second and third document seems to recommend this headset.
+Here, the customers are happy with the purchase of the VR headset.
 
 
 ```python
@@ -1851,21 +1851,21 @@ topic_info[topic_info.Topic == 4]
       <td>4</td>
       <td>61</td>
       <td>4_playing_for_fun_this</td>
-      <td>Our son brought this with his birthday money. He had been wanting 1 for approx 8 months. He has not been disappointed with it and plays with it all the time.</td>
+      <td>My son loves this.. so much fun playing it.. well worth the money</td>
     </tr>
     <tr>
       <th>5</th>
       <td>4</td>
       <td>61</td>
       <td>4_playing_for_fun_this</td>
-      <td>Got this for my son , the whole family have not stopped playing it .</td>
+      <td>I naught this for my sons birthday only a few weeks ago and we haven’t stopped playing. It brings so much fun and laughter. Highly recommend.</td>
     </tr>
     <tr>
       <th>5</th>
       <td>4</td>
       <td>61</td>
       <td>4_playing_for_fun_this</td>
-      <td>Bought this for my son but the whole family use and have endless fun playing with it</td>
+      <td>Brought this for my son but i cant stop playing it myself, this is outstanding!</td>
     </tr>
   </tbody>
 </table>
@@ -1913,21 +1913,21 @@ topic_info[topic_info.Topic == 5]
       <td>5</td>
       <td>47</td>
       <td>5_ago_month_bought_this</td>
-      <td>I bought this 3 weeks ago and love it</td>
+      <td>i bought this a month ago and im so happy with it.</td>
     </tr>
     <tr>
       <th>6</th>
       <td>5</td>
       <td>47</td>
       <td>5_ago_month_bought_this</td>
-      <td>I bought this 1 month ago and im very happy.</td>
+      <td>I bought this a month ago and am so happy that I did..</td>
     </tr>
     <tr>
       <th>6</th>
       <td>5</td>
       <td>47</td>
       <td>5_ago_month_bought_this</td>
-      <td>I bought two of this a month ago and I’m happy that I did and I enjoy since then</td>
+      <td>Bought this a week ago really happy</td>
     </tr>
   </tbody>
 </table>
@@ -1975,21 +1975,21 @@ topic_info[topic_info.Topic == 6]
       <td>6</td>
       <td>41</td>
       <td>6_quest_the_oculus_so</td>
-      <td>The Meta quest 2 is just amazing. Love it. I did get a different head strap though as the elastic one can be awkward to adjust. But this thing is incredible.</td>
+      <td>I sou happy for oculus quest 2</td>
     </tr>
     <tr>
       <th>7</th>
       <td>6</td>
       <td>41</td>
       <td>6_quest_the_oculus_so</td>
-      <td>Really pleased with this Quest 2. I'm completely addicted to Beat Sabre (great exercise too) and am really enjoying Superhot. Totally immersive and coupled with a ChromeCast, everyone can enjoy what the player is seeing and doing. This is one cool piece of kit.</td>
+      <td>Bought the quest 2 and really happy with it. Worth every penny.</td>
     </tr>
     <tr>
       <th>7</th>
       <td>6</td>
       <td>41</td>
       <td>6_quest_the_oculus_so</td>
-      <td>Love the meta quest 2 easy to use great games</td>
+      <td>I bought this around a month ago. Wanted one for a long time the quest 2 is a fantastic bit of kit. The games i play graphics are good but could be better.</td>
     </tr>
   </tbody>
 </table>
@@ -1997,7 +1997,7 @@ topic_info[topic_info.Topic == 6]
 
 
 
-Here, the customers express their enthusiasm and happiness about the product, in the third document, the costumer describes the benefits of upgrading from the previous Oculus (Meta) VR headset.
+Here, the customers express their enthusiasm and happiness about the product.
 
 
 ```python
@@ -2037,6 +2037,13 @@ topic_info[topic_info.Topic == 7]
       <td>7</td>
       <td>33</td>
       <td>7_happy_product_very_pleased</td>
+      <td>Happy with the product</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>7</td>
+      <td>33</td>
+      <td>7_happy_product_very_pleased</td>
       <td>am very happy for this product</td>
     </tr>
     <tr>
@@ -2044,14 +2051,7 @@ topic_info[topic_info.Topic == 7]
       <td>7</td>
       <td>33</td>
       <td>7_happy_product_very_pleased</td>
-      <td>I m very happy product l bought</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>7</td>
-      <td>33</td>
-      <td>7_happy_product_very_pleased</td>
-      <td>Very happy with product and speed of delivery</td>
+      <td>Very happy with product so far</td>
     </tr>
   </tbody>
 </table>
@@ -2059,7 +2059,7 @@ topic_info[topic_info.Topic == 7]
 
 
 
-Here, the reviews are short. they talk about how they enjoy the product and service of delivery from argos in the second document.
+Here, the reviews are short. they talk about how they enjoy the product.
 
 
 ```python
@@ -2099,21 +2099,21 @@ topic_info[topic_info.Topic == 8]
       <td>8</td>
       <td>30</td>
       <td>8_argos_service_always_thank</td>
-      <td>Bought this for Christmas and we all love it. Quick text from Argos to say when it was ready and easy collection</td>
+      <td>I have always been happy with everything I purchased from Argos</td>
     </tr>
     <tr>
       <th>9</th>
       <td>8</td>
       <td>30</td>
       <td>8_argos_service_always_thank</td>
-      <td>Happy with what i bought and same day delivery was extremely quick! Cannot be more impressed with the service that Argos is giving us on a daily basis</td>
+      <td>Very happy with my purchase I checked for availability online and found my closest argos had the item in stock I picked it up straight away hassle free great service thank you.</td>
     </tr>
     <tr>
       <th>9</th>
       <td>8</td>
       <td>30</td>
       <td>8_argos_service_always_thank</td>
-      <td>I purchased this for my daughters birthday. Amazing unit first class service from Argos berryden Aberdeen.</td>
+      <td>Amazing product and The Argos pickup were excellent as always. Quick and reliable service as always!</td>
     </tr>
   </tbody>
 </table>
@@ -2161,21 +2161,21 @@ topic_info[topic_info.Topic == 9]
       <td>9</td>
       <td>28</td>
       <td>9_oculus_the_is_it</td>
-      <td>Got the oculus 2 for my son for Christmas it’s brilliant</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>9</td>
-      <td>28</td>
-      <td>9_oculus_the_is_it</td>
-      <td>Bought two Oculus’ literally just before Christmas. Came very quickly and kids absolutely love them. Very happy with purchess.</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>9</td>
-      <td>28</td>
-      <td>9_oculus_the_is_it</td>
       <td>Bought Oculus and it’s great fun for the whole family</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>9</td>
+      <td>28</td>
+      <td>9_oculus_the_is_it</td>
+      <td>I've had the oculus for 3 weeks and it's crazy how you can see 360° all around up and down... I think everyone should try it</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>9</td>
+      <td>28</td>
+      <td>9_oculus_the_is_it</td>
+      <td>The oculus is amazing for all ages.</td>
     </tr>
   </tbody>
 </table>
@@ -2223,13 +2223,6 @@ topic_info[topic_info.Topic == 10]
       <td>10</td>
       <td>27</td>
       <td>10_family_fun_all_of</td>
-      <td>This is amazing, such fun with family and on own. You wont regret.</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>10</td>
-      <td>27</td>
-      <td>10_family_fun_all_of</td>
       <td>All great works, we have a lot of fun as a family.</td>
     </tr>
     <tr>
@@ -2237,7 +2230,14 @@ topic_info[topic_info.Topic == 10]
       <td>10</td>
       <td>27</td>
       <td>10_family_fun_all_of</td>
-      <td>Brilliant for the family to play, hours of fun!</td>
+      <td>Perfect for the for the entire family</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>10</td>
+      <td>27</td>
+      <td>10_family_fun_all_of</td>
+      <td>Great family fun!!!!!</td>
     </tr>
   </tbody>
 </table>
@@ -2285,13 +2285,6 @@ topic_info[topic_info.Topic == 12]
       <td>12</td>
       <td>19</td>
       <td>12_strap_it_is_but</td>
-      <td>Product lives up to all the hype. It’s been amazing and I’ve spent hours on it already. The strap could be improved and perhaps the battery life and charging times too.</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>12</td>
-      <td>19</td>
-      <td>12_strap_it_is_but</td>
       <td>-The headstrap is fine, it doesnt feel too front heavy. -The battery life is fine, I get tired after one hour anyway -Any USB 3 rated for transfer can be used, don't buy the official one -Use a referral link to get store credit -The TOS is iffy but soon it should change as the Facebook account requirement is going to be removed</td>
     </tr>
     <tr>
@@ -2299,7 +2292,14 @@ topic_info[topic_info.Topic == 12]
       <td>12</td>
       <td>19</td>
       <td>12_strap_it_is_but</td>
-      <td>Blown away by how cool this is and how much content that is available for the device. The head strap it comes with is serviceable but not brilliant and restricts your play time as it gets uncomfortable. cheap replacements are available though and they totally transform it.</td>
+      <td>Product lives up to all the hype. It’s been amazing and I’ve spent hours on it already. The strap could be improved and perhaps the battery life and charging times too.</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>12</td>
+      <td>19</td>
+      <td>12_strap_it_is_but</td>
+      <td>The head strap is very easy to change size of it so all ages can use it.</td>
     </tr>
   </tbody>
 </table>
@@ -2307,7 +2307,7 @@ topic_info[topic_info.Topic == 12]
 
 
 
-Here, it looks like the customers are talking about the VR headset specifically. all of these reviews mentions that there are some issues with the battery life, the charging the time and the don't seem to like the idea of using a Facebook (Meta) account in order to use the headset. They also seem to not like the strap that comes with headset.
+Here, it looks like the customers are talking about the VR headset specifically They seem to not like the strap that comes with headset.
 
 
 ```python
@@ -2347,21 +2347,21 @@ topic_info[topic_info.Topic == 13]
       <td>13</td>
       <td>18</td>
       <td>13_immersive_games_nintendo_or</td>
-      <td>This is the beginnings of so much fun , so realistic from drone footage as if you are sitting in the top of the drone. Game play can be quite scary, especially with headphones on though the speakers are great ! Great product and purchase</td>
+      <td>It’s like you entered nintendo game inside, very quick booting and some incredible games, sport simulation like table tnis and golf is very realistic.</td>
     </tr>
     <tr>
       <th>14</th>
       <td>13</td>
       <td>18</td>
       <td>13_immersive_games_nintendo_or</td>
-      <td>After trying this at a friends i just had to buy one. Cant believe how immersive the experience is. Have not bought various games for both myself and son. Amazing.</td>
+      <td>The step up in immersion for the games compared to any screen based console or PC is astounding.</td>
     </tr>
     <tr>
       <th>14</th>
       <td>13</td>
       <td>18</td>
       <td>13_immersive_games_nintendo_or</td>
-      <td>The immersion is good. Also good that you don't have to be connected to any PC or console.</td>
+      <td>I have had this for a few weeks now and wow it’s just a completely different way of gaming it’s a must I can’t praise it enough you can even enjoy Netflix cinema style</td>
     </tr>
   </tbody>
 </table>
@@ -2409,21 +2409,21 @@ topic_info[topic_info.Topic == 14]
       <td>14</td>
       <td>17</td>
       <td>14_experience_fun_brilliant_wasnt</td>
+      <td>It wasn’t that bad but it wasn’t that great</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>14</td>
+      <td>17</td>
+      <td>14_experience_fun_brilliant_wasnt</td>
+      <td>Happy with it it’s a lot fun.</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>14</td>
+      <td>17</td>
+      <td>14_experience_fun_brilliant_wasnt</td>
       <td>Absolutely brilliant. Exactly as described.</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>14</td>
-      <td>17</td>
-      <td>14_experience_fun_brilliant_wasnt</td>
-      <td>Excellent, great experience so much fun</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>14</td>
-      <td>17</td>
-      <td>14_experience_fun_brilliant_wasnt</td>
-      <td>Absolutely amazing. Mind blown!</td>
     </tr>
   </tbody>
 </table>
@@ -2471,14 +2471,7 @@ topic_info[topic_info.Topic == 15]
       <td>15</td>
       <td>16</td>
       <td>15_exercise_fitness_and_for</td>
-      <td>I bought this a few weeks ago and still enjoying every day. Good stuff to burn some calories and for daily exercise.</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>15</td>
-      <td>16</td>
-      <td>15_exercise_fitness_and_for</td>
-      <td>It’s excellent for family and friends good fitness as well as very active</td>
+      <td>This is easily the best purchase ever, including my car and house. I bought this for my son for Xmas but it would seem I am the kid of the house. I downloaded thrill of the fight boxing and I can't keep off it. Its the best exercise I have ever done its motivational and addictive because I don't like to lose. I've lost around 8 ibs in 2 weeks. Highly recommend this product</td>
     </tr>
     <tr>
       <th>16</th>
@@ -2486,6 +2479,13 @@ topic_info[topic_info.Topic == 15]
       <td>16</td>
       <td>15_exercise_fitness_and_for</td>
       <td>Worth it just for the fun and exercise</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>15</td>
+      <td>16</td>
+      <td>15_exercise_fitness_and_for</td>
+      <td>It’s excellent for family and friends good fitness as well as very active</td>
     </tr>
   </tbody>
 </table>
@@ -2533,21 +2533,21 @@ topic_info[topic_info.Topic == 16]
       <td>16</td>
       <td>12</td>
       <td>16_kids_love_fun_ages</td>
+      <td>Kids love it life like</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>16</td>
+      <td>12</td>
+      <td>16_kids_love_fun_ages</td>
+      <td>Kids love it great fun to play</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>16</td>
+      <td>12</td>
+      <td>16_kids_love_fun_ages</td>
       <td>Best thing to keep kids quiet, it's amazing</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>16</td>
-      <td>12</td>
-      <td>16_kids_love_fun_ages</td>
-      <td>At least my kids r enjoying it</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>16</td>
-      <td>12</td>
-      <td>16_kids_love_fun_ages</td>
-      <td>Kidsl9ved it great fun for all ages</td>
     </tr>
   </tbody>
 </table>
@@ -2595,7 +2595,14 @@ topic_info[topic_info.Topic == 17]
       <td>17</td>
       <td>12</td>
       <td>17_kit_piece_of_bit</td>
-      <td>This was a gift , a great idea but the fitting could be improved</td>
+      <td>My son is extremely happy with this, a brill bit of kit</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>17</td>
+      <td>12</td>
+      <td>17_kit_piece_of_bit</td>
+      <td>Great bit of kit,great fun.</td>
     </tr>
     <tr>
       <th>18</th>
@@ -2603,13 +2610,6 @@ topic_info[topic_info.Topic == 17]
       <td>12</td>
       <td>17_kit_piece_of_bit</td>
       <td>Amazing piece of kit</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>17</td>
-      <td>12</td>
-      <td>17_kit_piece_of_bit</td>
-      <td>My son is extremely happy with this, a brill bit of kit</td>
     </tr>
   </tbody>
 </table>
@@ -2657,14 +2657,14 @@ topic_info[topic_info.Topic == 18]
       <td>18</td>
       <td>11</td>
       <td>18_good_great_easy_item</td>
-      <td>Great item good free content</td>
+      <td>Ordering and collection was very quick and easy.</td>
     </tr>
     <tr>
       <th>19</th>
       <td>18</td>
       <td>11</td>
       <td>18_good_great_easy_item</td>
-      <td>Great item, easy to buy</td>
+      <td>Wow very nice well worth buying</td>
     </tr>
     <tr>
       <th>19</th>
@@ -2719,21 +2719,21 @@ topic_info[topic_info.Topic == 19]
       <td>19</td>
       <td>11</td>
       <td>19_battery_product_life_family</td>
-      <td>The battery life is a bit rubbish but this is an amazing product</td>
+      <td>Bought this a month or two ago, I’ve been on it non stop and the only thing thats negative is the battery life.</td>
     </tr>
     <tr>
       <th>20</th>
       <td>19</td>
       <td>11</td>
       <td>19_battery_product_life_family</td>
-      <td>Such an enjoyable device family loves it so much!! Do recommend buying it</td>
+      <td>Awesome to use but I had a pixel go out and had to send the product back to manufacturers…. Waiting for a replacement</td>
     </tr>
     <tr>
       <th>20</th>
       <td>19</td>
       <td>11</td>
       <td>19_battery_product_life_family</td>
-      <td>brought this 2 weeks ago and i absolutely love it, besides the battery life. it does everything i expected and more. worth every penny!</td>
+      <td>Best thing we have bought and fantastic for all the family. We’ve spent hours on this since we got it. Just wish it had a longer battery life so it didn’t need changing as much, as were that addicted!</td>
     </tr>
   </tbody>
 </table>
@@ -2781,21 +2781,21 @@ topic_info[topic_info.Topic == 20]
       <td>20</td>
       <td>11</td>
       <td>20_moon_over_hes_with</td>
-      <td>I bought this for my sons birthday he was over the moon</td>
+      <td>I bought this for my son for Christmas and he was over the moon and has enjoyed every minute of it.</td>
     </tr>
     <tr>
       <th>21</th>
       <td>20</td>
       <td>11</td>
       <td>20_moon_over_hes_with</td>
-      <td>Bought for Grandson he's over the moon with it.</td>
+      <td>I bought this a few weeks ago for my grandsons birthday today and he is absolutely made up with it. He’s over the moon</td>
     </tr>
     <tr>
       <th>21</th>
       <td>20</td>
       <td>11</td>
       <td>20_moon_over_hes_with</td>
-      <td>Mycson is over the moon with this product well made and well designed</td>
+      <td>Bought this for myself as a gift and honestly over the moon Santa came early</td>
     </tr>
   </tbody>
 </table>
@@ -2843,21 +2843,21 @@ topic_info[topic_info.Topic == 21]
       <td>21</td>
       <td>10</td>
       <td>21_the_you_to_of</td>
-      <td>Im still blown away by the oculus and so are all my friends who have a go. You will not regret buying one of these. No PC required, great graphics and truly immersive game play.</td>
+      <td>I use and develop software/content for VR systems at work, and I must say, the Oculus Quest 2 is a very polished product. It's a great experience that generally just works, as opposed to some other systems, and is easy enough to set up and get going. You don't need a PC, and there aren't any cables (apart from when you're charging it of course). The only reason I didn't give it 5 stars is because you need a Facebook/Meta account to use it.</td>
     </tr>
     <tr>
       <th>22</th>
       <td>21</td>
       <td>10</td>
       <td>21_the_you_to_of</td>
-      <td>Have been waiting to get an Xbox series X. But after it’s taken so long I decided to try the world or VR without a Pc. Great for those into gaming and those who aren’t. My other half uses it for escape rooms. Downside is that streaming drops out often abs you can only export videos via Facebook which isn’t useful.</td>
+      <td>Pros: It's pretty easy to set up (there are useful 'how to get started' videos on YouTube) and to use. Once you've got it set up, you'll find some intros that take you through what it can do and how to use it. It comes with preloaded experiences and demo versions of games so you'll have stuff to keep you busy for a while (I've had mine three weeks and still haven't seen and done everything on it). There's a variety of things to do. Apart from games and fitness classes, I've been snowboarding, experienced a parachute jump, raced a motorbike and visited places I've never been before (plus a few I have). You'll go "Wow" at least once. Cons: Oculus is owned by Facebook and you need a facebook account to use it. You'll want to buy full versions of some of the games, as well as new stuff, and these are not cheap. It's a bit glitchy - it can freeze, for example - but most problems are resolved by restarting it (the Oculus website is quite useful, you can even chat to a real person). Spending hours in virtual reality might be a bit antisocial to people around you. Overall, I'm pleased with it and have used it nearly every day. If you've never experienced immersive VR before, you'll find it very different from anything else - including 3D. But that's what makes you go "wow".</td>
     </tr>
     <tr>
       <th>22</th>
       <td>21</td>
       <td>10</td>
       <td>21_the_you_to_of</td>
-      <td>I bought this expecting a basic VR experience. The VR itself and the games are so much more immersive than I thought they would be. There are tonnes of options for everyone in the game store and app lab. The battery time isn't the best (about 1 hour) but it does charge very quickly and you can buy straps with battery extenders built in. The guardian wall really makes this oculus stand out about anything else, it gives you a safe space in your home that you can move around in. Highly recommended.</td>
+      <td>After trying out virtual reality 2 years ago, I have wanted my own ever since. I finally made the decision and bought one this year before Christmas to guarantee some funny moments with the family and I am so happy I did! Virtual reality is definitely an out of this world experience that I believe everyone has to try at least once! This Oculus is the best option as it is wireless with battery life of around 2 hours, has 3 different lenses that you can click through on the goggles to match each persons eyesight so it’s not blurry, you can cast your experience to another device so your friends/family can also experience it too, has a large store of many games to buy and a few that are even free, and tons of video experiences; my favourite so far being walking alongside Blue from Jurassic World and seeing a T-Rex. If you’re thinking about buying, it’s definitely worth it!</td>
     </tr>
   </tbody>
 </table>
@@ -2865,7 +2865,7 @@ topic_info[topic_info.Topic == 21]
 
 
 
-Here we notice that the length of the reviews is significantly longer with users going into more detail. The Second customer mentions that the headset can make users dizzy (motion-sickness) and notes that the battery life is short.
+Here we notice that the length of the reviews is significantly longer with users going into more detail.
 
 ## 5.3. Summary of identified topics
 We saw many reviews talk about the VR headset and general positive experience. Many talk about the family aspect of buying the game as a present, which alligns with timeseries analysis peak during chistmas period.
@@ -3089,7 +3089,7 @@ Incorporating independent findings into our conclusions is essential for ensurin
 According to PCMag [13], battery life is one of the main issues for standalone VR headsets, including the Meta Quest 2. CNET [14] reports that the headset has a battery life of two to three hours, which may not be sufficient for longer play sessions. Techspot [15] lists the short battery life as a con of the headset, stating that it only lasts for two to three hours. Mashable [16] also notes that the battery life of the Meta Quest 2 VR headset could be longer. These findings from independent tech industry sources [13, 14, 15, 16] suggest that battery life may be a concern for users of the Meta Quest 2 VR headset.
 
 # 7.Conclusion
-Our analysis of customer reviews of the Meta Quest 2 VR headset revealed that battery life was a common concern among users. Upon conducting sentiment analysis on this topic, we observed a decline in positive sentiments and an increase in neutral and negative sentiments in the topic about battery. This trend suggests that the battery lifespan of the Meta Quest 2 VR headset may be perceived as short by users. To further confirm our findings, we consulted multiple well-respected tech industry sources, including PCMag [20], CNET [21], Techspot [22], and Mashable [23], which all identified battery life as a common drawback of the Meta Quest 2 VR headset. 
+Our analysis of customer reviews of the Meta Quest 2 VR headset revealed that battery life was a common concern among users. Upon conducting sentiment analysis on this topic, we observed a decline in positive sentiments and an increase in neutral sentiments in the topic about battery. This trend suggests that the battery lifespan of the Meta Quest 2 VR headset may be perceived as short by users. To further confirm our findings, we consulted multiple well-respected tech industry sources, including PCMag [13], CNET [14], Techspot [15], and Mashable [16], which all identified battery life as a common drawback of the Meta Quest 2 VR headset. 
 
 In summary, our study concluded that the battery lifespan of the Meta Quest 2 VR headset has a potential area for improvement. as supported by both our analysis on the customer reviews and independent sources.
 
