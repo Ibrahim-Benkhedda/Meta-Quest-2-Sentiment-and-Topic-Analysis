@@ -1,4 +1,4 @@
-# Meta Quest 2 ProductSentiment Analysis and Topic Modeling of Reviews
+# Meta Quest 2 Product Sentiment Analysis and Topic Modeling of Reviews
 
 
 ## Abstract
